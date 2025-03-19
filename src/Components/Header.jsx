@@ -9,7 +9,7 @@ const Header = () => {
 
   const initialLinks = [
     {
-      name: "en vivos",
+      name: "lives",
       path: "/lives",
       active: false,
       svg: (
