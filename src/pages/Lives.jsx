@@ -1,28 +1,34 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
+import cheerio from "cheerio";
+import YouTube from "react-youtube";
 
 const Lives = () => {
   const [videos, setVideos] = useState([]);
 
   useEffect(() => {
     const fetchVideos = async () => {
-      const response = await axios.get(
-        "https://www.youtube.com/playlist?list=PLnHPgY5vHkhDdRZP1xB_mq7f-aZCrdina",
-        {
-          headers: {
-            "User-Agent":
-              "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.3",
-          },
-        }
-      );
+      try {
+        const response = await axios.get(
+          "https://www.youtube.com/playlist?list=PLnHPgY5vHkhDdRZP1xB_mq7f-aZCrdina"
+        );
 
-      const videoIds = response.data
-        .split('href="/watch?v=')
-        .slice(1)
-        .map((video) => video.split('"')[0]);
+        const $ = cheerio.load(response.data);
+        const videoIds = [];
 
-      setVideos(videoIds);
+        $('a[href^="/watch?v="]').each((index, element) => {
+          const videoId = $(element).attr("href").split("=")[1];
+          if (!videoIds.includes(videoId)) {
+            videoIds.push(videoId);
+          }
+        });
+
+        setVideos(videoIds);
+      } catch (error) {
+        console.error("Error fetching videos:", error);
+      }
     };
+
     fetchVideos();
   }, []);
 
