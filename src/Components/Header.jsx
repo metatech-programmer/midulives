@@ -300,7 +300,9 @@ const Header = () => {
   useEffect(() => {
     const updatedLanguages = listLanguages.map((lang) => ({
       ...lang,
-      isActive:  String(lang.code).toLowerCase() === currentLanguage.toLowerCase(),
+      isActive:
+        lang.code.toLowerCase() ===
+        (currentLanguage ? currentLanguage.toLowerCase() : ""),
     }));
     setLanguages(updatedLanguages);
   }, [currentLanguage]);
