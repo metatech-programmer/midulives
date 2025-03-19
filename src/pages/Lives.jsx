@@ -1,55 +1,47 @@
-import axios from "axios";
 import { useEffect, useState } from "react";
-import * as cheerio from "cheerio";
-import YouTube from "react-youtube";
+import { Link } from "react-router-dom";
 
 const Lives = () => {
-  const [videos, setVideos] = useState([]);
+  const [lives, setLives] = useState([]);
 
   useEffect(() => {
-    const fetchVideos = async () => {
-      try {
-        const response = await axios.get(
-          "https://www.youtube.com/playlist?list=PLnHPgY5vHkhDdRZP1xB_mq7f-aZCrdina"
-        );
-
-        const $ = cheerio.load(response.data);
-        const videoIds = [];
-
-        $('a[href^="/watch?v="]').each((index, element) => {
-          const videoId = $(element).attr("href").split("=")[1];
-          if (!videoIds.includes(videoId)) {
-            videoIds.push(videoId);
-          }
-        });
-
-        setVideos(videoIds);
-      } catch (error) {
-        console.error("Error fetching videos:", error);
-      }
+    const fetchLives = async () => {
+      const response = await fetch(
+        "https://api.midudev.com/lives?_sort=start&_order=asc"
+      );
+      const data = await response.json();
+      setLives(data);
     };
-
-    fetchVideos();
+    fetchLives();
   }, []);
-
-  const opts = {
-    height: "390",
-    width: "640",
-  };
 
   return (
     <div className="container mx-auto px-4 py-10">
       <h1 className="text-2xl font-bold my-4">Lives</h1>
       <ul className="space-y-4">
-        {videos.map((videoId) => (
-          <li key={videoId} className="shadow-md p-4 rounded-lg">
-            <YouTube videoId={videoId} opts={opts} />
+        {lives.map((live) => (
+          <li key={live.id} className="shadow-md p-4 rounded-lg">
+            <Link to={`/lives/${live.id}`}>
+              <h2 className="text-xl font-semibold">{live.title}</h2>
+              <p className="text-gray-600 mt-2">
+                {new Date(live.start).toLocaleString()}
+              </p>
+            </Link>
           </li>
         ))}
       </ul>
+      <div className="h-dvh">
+        <iframe
+          className="w-full h-full p-10 rounded-xl"
+          src="https://www.youtube.com/embed/videoseries?si=aUg4iOl9f3p1xPau&amp;list=PLnHPgY5vHkhDdRZP1xB_mq7f-aZCrdina"
+          title="YouTube video player"
+          frameborder="0"
+          allow="accelerometer; ambient-light-sensor; autoplay; camera; display-capture; document-domain; encrypted-media; fullscreen; geolocation; gyroscope; magnetometer; microphone; midi; payment; picture-in-picture; publickey-credentials-get; sync-xhr; usb; web-share; xr-spatial-tracking;"
+          referrerpolicy="strict-origin-when-cross-origin"
+        ></iframe>
+      </div>
     </div>
   );
 };
 
 export default Lives;
-
