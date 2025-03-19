@@ -1,0 +1,70 @@
+@import url('https://fonts.googleapis.com/css2?family=Dongle&family=Silkscreen:wght@400;700&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-dongle: 'dongle', sans-serif;
+  --font-silkscreen: 'silkscreen', sans-serif;
+}
+
+@layer base {
+  html {
+    @apply font-dongle text-white bg-black tracking-wider;
+  }
+}
+
+
+/* -------------------------------------------------------------------------- */
+
+.animate-fade-in {
+  animation: fadeIn 0.5s ease-in-out both;
+}
+
+
+nav,
+header {
+  animation: fadeInScroll linear both;
+  animation-timeline: scroll();
+  animation-range: 0 150px;
+}
+
+@keyframes fadeInScroll {
+  from {
+    background-color: transparent;
+  }
+
+  to {
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
+    background: #111a284d;
+    backdrop-filter: blur(10px);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    transform: translateY(20px);
+    opacity: 0;
+  }
+
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+::-webkit-scrollbar {
+  width: 5px;
+  background-color: #111A28;
+}
+
+::-webkit-scrollbar-track {
+  display: none;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #1e2b3f;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #23334b;
+}
