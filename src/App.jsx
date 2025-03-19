@@ -21,7 +21,7 @@ const routes = [
 
 
 function App() {
-  const currentLanguage = localStorage.getItem("language");
+  const currentLanguage = localStorage.getItem("language") || "es";
   
   const { i18n } = useTranslation();
   useEffect(() => {
