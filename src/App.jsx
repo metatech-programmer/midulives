@@ -19,6 +19,7 @@ const routes = [
   { path: "/charlas", element: <Talks /> },
 ];
 
+
 function App() {
   const currentLanguage = localStorage.getItem("language");
   

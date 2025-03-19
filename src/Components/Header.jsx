@@ -266,10 +266,11 @@ const Header = () => {
       bg: "cover",
     },
   ];
+
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const dropdownRef = useRef(null);
   const [languages, setLanguages] = useState(listLanguages);
-  const currentLanguage = localStorage.getItem("language");
+  const currentLanguage = localStorage.getItem("language") || "es";
 
   const toggleDropdown = () => {
     setDropdownOpen(!dropdownOpen);
@@ -312,6 +313,12 @@ const Header = () => {
   const changeLanguage = (lng) => {
     i18n.changeLanguage(lng);
   };
+
+  useEffect(() => {
+    if (currentLanguage) {
+      changeLanguage(currentLanguage);
+    }
+  }, [currentLanguage]);
 
   /* Languages End */
 
