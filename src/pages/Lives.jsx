@@ -1,6 +1,6 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import cheerio from "cheerio";
+import * as cheerio from "cheerio";
 import YouTube from "react-youtube";
 
 const Lives = () => {
