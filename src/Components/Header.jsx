@@ -314,11 +314,6 @@ const Header = () => {
     i18n.changeLanguage(lng);
   };
 
-  useEffect(() => {
-    if (currentLanguage) {
-      changeLanguage(currentLanguage);
-    }
-  }, [currentLanguage]);
 
   /* Languages End */
 
