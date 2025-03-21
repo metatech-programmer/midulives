@@ -25,44 +25,52 @@ const PLAYLIST_IDS = {
 const API_URL = "https://www.googleapis.com/youtube/v3/playlistItems";
 
 const Lives = () => {
-  const [videos, setVideos] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [selectedVideo, setSelectedVideo] = useState("");
-  const [playlistId, setPlaylistId] = useState(
-    "PLnHPgY5vHkhDdRZP1xB_mq7f-aZCrdina"
-  );
-  const [currentPage, setCurrentPage] = useState(1);
-  const [cachedVideos, setCachedVideos] = useState({}); // Cache for videos by playlistId
-  const VIDEOS_PER_PAGE = 12;
-
   const location = useLocation();
   const { cursoId } = useParams();
   const { t } = useTranslation();
 
+  // Move these hooks before the useState that depends on cursoId
+  const [videos, setVideos] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [selectedVideo, setSelectedVideo] = useState("");
+  const [isFirstLoad, setIsFirstLoad] = useState(true);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [cachedVideos, setCachedVideos] = useState({});
+
+  // Now playlistId can access cursoId
+  const [playlistId, setPlaylistId] = useState(() => {
+    const path = window.location.pathname.split("/")[1];
+    const id = path === "cursos" && cursoId ? PLAYLIST_IDS.cursos[cursoId] : PLAYLIST_IDS[path];
+    return id || "PLnHPgY5vHkhDdRZP1xB_mq7f-aZCrdina";
+  });
+
+  const VIDEOS_PER_PAGE = 12;
+
   useEffect(() => {
-    switch (location.pathname.split("/")[1]) {
+    const path = location.pathname.split("/")[1];
+    let newPlaylistId;
+
+    switch (path) {
       case "lives":
-        setPlaylistId(PLAYLIST_IDS.lives);
-        break;
       case "live_coding":
-        setPlaylistId(PLAYLIST_IDS.live_coding);
-        break;
       case "eventos":
-        setPlaylistId(PLAYLIST_IDS.eventos);
-        break;
       case "noticias":
-        setPlaylistId(PLAYLIST_IDS.noticias);
-        break;
       case "charlas":
-        setPlaylistId(PLAYLIST_IDS.charlas);
+        newPlaylistId = PLAYLIST_IDS[path];
         break;
       case "cursos":
         if (cursoId) {
-          setPlaylistId(PLAYLIST_IDS.cursos[cursoId]);
+          newPlaylistId = PLAYLIST_IDS.cursos[cursoId];
         }
         break;
       default:
         break;
+    }
+
+    if (newPlaylistId && newPlaylistId !== playlistId) {
+      setPlaylistId(newPlaylistId);
+      setVideos([]); // Limpiar videos anteriores
+      setIsFirstLoad(true);
     }
   }, [location, cursoId]);
 
@@ -70,18 +78,18 @@ const Lives = () => {
     setCurrentPage(1); // Reset page when playlist changes
 
     const fetchAllVideos = async () => {
-      setLoading(true);
       if (!playlistId) return;
 
-      // Check if we have cached results
+      setLoading(true);
+      setVideos([]); // Reset videos before new fetch
+
+      // Check cache first
       if (cachedVideos[playlistId]) {
         setVideos(cachedVideos[playlistId]);
         setLoading(false);
+        setIsFirstLoad(false);
         return;
       }
-
-      let allVideos = [];
-      let nextPageToken = "";
 
       try {
         const response = await fetch(
@@ -94,32 +102,30 @@ const Lives = () => {
             id: item.snippet.resourceId.videoId,
             title: item.snippet.title,
             thumbnail: item.snippet.thumbnails.high.url,
-            publishedAt: new Date(
-              item.snippet.publishedAt
-            ).toLocaleDateString(),
+            publishedAt: new Date(item.snippet.publishedAt).toLocaleDateString(),
           }));
 
-          allVideos = [...allVideos, ...formattedVideos];
-          // Update videos state incrementally to show progress
-          setVideos((prev) => [...prev, ...formattedVideos]);
+          // Update cache
+          setCachedVideos((prev) => ({
+            ...prev,
+            [playlistId]: formattedVideos,
+          }));
+
+          // Update videos state
+          setVideos(formattedVideos);
         }
-
-        // Cache the results
-        setCachedVideos((prev) => ({
-          ...prev,
-          [playlistId]: allVideos,
-        }));
-
-        setVideos(allVideos);
       } catch (error) {
         console.error("Error al obtener videos:", error);
       } finally {
         setLoading(false);
+        setIsFirstLoad(false);
       }
     };
 
-    fetchAllVideos();
-  }, [playlistId]);
+    if (playlistId && (isFirstLoad || !cachedVideos[playlistId])) {
+      fetchAllVideos();
+    }
+  }, [playlistId, isFirstLoad]);
 
   // Get current videos for pagination
   const indexOfLastVideo = currentPage * VIDEOS_PER_PAGE;
@@ -138,8 +144,8 @@ const Lives = () => {
   };
 
   return (
-    <div className="container mx-auto px-4 pt-8 pb-24 ">
-      {loading && videos.length === 0 ? (
+    <div className="container mx-auto px-4 pt-8 pb-24">
+      {(loading || isFirstLoad) && videos.length === 0 ? (
         <div className="h-[60dvh] flex items-center justify-center">
           <div className="animate-spin rounded-full h-52 w-52 border-b-3 border-purple-500"></div>
         </div>
