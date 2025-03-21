@@ -22,7 +22,7 @@ export default function BtnTop() {
 
   return (
     <button
-      className={`fixed bottom-10 right-10 bg-blue-500/50 md:hover:bg-blue-500 active:bg-blue-500 active:scale-105 p-4 transition-all rounded-full z-[999] ${
+      className={`fixed bottom-2 md:bottom-10 right-2  md:right-10 bg-blue-500/50 md:hover:bg-blue-500 active:bg-blue-500 active:scale-105 p-4 transition-all rounded-full z-[999] ${
         visible ? "block" : "hidden"
       }`}
       onClick={handleClick}
