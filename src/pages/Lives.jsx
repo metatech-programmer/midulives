@@ -101,7 +101,7 @@ const Lives = () => {
     };
 
     fetchAllVideos();
-  }, [playlistId]);
+  }, [playlistId, location]);
 
   const handleVideoSelect = (videoId) => {
     setSelectedVideo(videoId);
