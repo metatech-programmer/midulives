@@ -120,7 +120,7 @@ const Courses = () => {
   const { t } = useTranslation();
 
   return (
-    <div className="container mx-auto px-4">
+    <div className="container mx-auto px-4 animate-fade-in">
       <h1 className="text-xl font-bold my-10 font-silkscreen">{t('courses.title')}</h1>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {COURSES.map((course) => (

@@ -109,15 +109,15 @@ const Lives = () => {
   };
 
   return (
-    <div className="container mx-auto px-4 pt-8 pb-24">
+    <div className="container mx-auto px-4 pt-8 pb-24 ">
       {loading ? (
         <div className="h-[60dvh] flex items-center justify-center">
         <div className="animate-spin rounded-full h-52 w-52 border-b-3 border-purple-500"></div>
       </div>
       ) : (
-        <div>
+        <div className="animate-fade-in">
           <iframe
-            className="w-full h-52 md:h-[80dvh] rounded-lg shadow-lg animate-fade-in"
+            className="w-full h-52 md:h-[80dvh] rounded-lg shadow-lg"
             src={`https://www.youtube.com/embed/${
               selectedVideo || videos[0]?.id
             }?list=${playlistId}&autoplay=1`}
