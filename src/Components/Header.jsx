@@ -485,7 +485,7 @@ const Header = () => {
             {/* Botón de idioma */}
             <button
               onClick={() => setDropdownOpen(!dropdownOpen)}
-              className="flex items-center px-4 py-2 text-sm text-gray-900 dark:text-white rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition"
+              className="flex items-center px-4 py-2 text-sm text-gray-200 rounded-lg hover:bg-gray-700 transition"
             >
               {languages.map(
                 (lang) =>
@@ -517,7 +517,7 @@ const Header = () => {
                         <li>
                           <button
                             onClick={() => selectLanguage(lang)}
-                            className="flex items-center px-4 py-2 text-sm text-gray-200 rounded-lg hover:bg-gray-100 transition w-full"
+                            className="flex items-center px-4 py-2 text-sm text-gray-200 rounded-lg hover:bg-gray-950 transition w-full"
                           >
                             <div
                               className={`w-5 h-5 rounded-full me-2 `}
