@@ -19,29 +19,61 @@
   animation: fadeIn 0.5s ease-in-out both;
 }
 
+.animate-fade-in-show {
+  view-timeline-name: --reveal;
 
-nav,
-header {
+  animation-name: fadeIn;
+  animation-fill-mode: both;
+
+  animation-timeline: --reveal;
+  animation-range: entry 25% cover 50%;
+}
+
+
+.animate-fade-in-scroll {
   animation: fadeInScroll linear both;
   animation-timeline: scroll();
   animation-range: 0 150px;
 }
 
+.animate-fade-in-nav {
+  animation: fadeInNav 0.3s ease-in-out both;
+}
+
 @keyframes fadeInScroll {
   from {
     background-color: transparent;
+    top: -5px;
+
   }
 
   to {
-    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
-    background: #111a284d;
-    backdrop-filter: blur(10px);
+    top: -5px;
+    box-shadow: 0 0 0 10px rgba(0, 0, 0, 0.1);
+    background: #111a28b5;
+    backdrop-filter: blur(160px);
   }
 }
 
 @keyframes fadeIn {
   from {
     transform: translateY(20px);
+    scale: 80%;
+    opacity: 0;
+  }
+
+  to {
+    transform: translateY(0);
+    scale: 100%;
+    opacity: 1;
+  }
+}
+
+
+
+@keyframes fadeInNav {
+  from {
+    transform: translateY(-500px);
     opacity: 0;
   }
 

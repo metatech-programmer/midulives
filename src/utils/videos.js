@@ -5,7 +5,6 @@ const videos = {
             "title": "Live 1",
             "url": "https://www.youtube.com/embed/VIDEO_ID_1",
             "speaker": "Midudev (Miguel Ángel Durán)",
-            "description": "Description 1",
             "Image": "https://via.placeholder.com/150"
         }
     ],

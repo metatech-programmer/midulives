@@ -3,8 +3,8 @@ import { useTranslation } from "react-i18next";
 const Fotter = () => {
   const { t } = useTranslation();
   return (
-    <footer className=" text-white py-4 z-50">
-      <div className="container mx-auto">
+    <footer className=" text-white py-4 z-50 text-sm md:text-lg">
+      <div className="contaier mx-auto">
         <p className="text-center text-gray-300">
           &copy; {new Date().getFullYear()} {t("footer.copyright")}{" "}
           <a

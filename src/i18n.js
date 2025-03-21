@@ -13,6 +13,7 @@ i18n
     interpolation: {
       escapeValue: false,
     },
+    supportedLngs: ['en', 'es', 'fr', 'pt-BR', 'es-AR', 'ca'],
   });
 
 export default i18n;

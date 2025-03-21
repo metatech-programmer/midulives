@@ -57,6 +57,49 @@ const Header = () => {
       ),
     },
     {
+      name: "live_coding",
+      path: "/live_coding",
+      active: false,
+      svg: (
+        <svg
+          className="w-6 h-6"
+          fill="#ffffff"
+          height="200px"
+          width="200px"
+          version="1.1"
+          id="Layer_1"
+          xmlns="http://www.w3.org/2000/svg"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          viewBox="0 0 512 512"
+          xml:space="preserve"
+          stroke="#ffffff"
+        >
+          <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+          <g
+            id="SVGRepo_tracerCarrier"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          ></g>
+          <g id="SVGRepo_iconCarrier">
+            {" "}
+            <g>
+              {" "}
+              <g>
+                {" "}
+                <g>
+                  {" "}
+                  <path d="M282.503,149.97c-11.43-2.858-23.013,4.092-25.87,15.522l-42.667,170.667c-2.858,11.43,4.092,23.013,15.522,25.87 s23.013-4.092,25.87-15.522l42.667-170.667C300.883,164.41,293.933,152.828,282.503,149.97z"></path>{" "}
+                  <path d="M170.662,234.667V192c11.782,0,21.333-9.551,21.333-21.333c0-11.782-9.551-21.333-21.333-21.333 c-25.201,0-42.667,17.466-42.667,42.667v33.83l-15.085,15.085c-8.331,8.331-8.331,21.839,0,30.17l15.085,15.085V320 c0,25.201,17.466,42.667,42.667,42.667c11.782,0,21.333-9.551,21.333-21.333c0-11.782-9.551-21.333-21.333-21.333v-42.667 c0-5.658-2.248-11.084-6.248-15.085L158.166,256l6.248-6.248C168.415,245.751,170.662,240.325,170.662,234.667z"></path>{" "}
+                  <path d="M383.996,225.83V192c0-25.201-17.466-42.667-42.667-42.667c-11.782,0-21.333,9.551-21.333,21.333 c0,11.782,9.551,21.333,21.333,21.333v42.667c0,5.658,2.248,11.084,6.248,15.085l6.248,6.248l-6.248,6.248 c-4.001,4.001-6.248,9.427-6.248,15.085V320c-11.782,0-21.333,9.551-21.333,21.333c0,11.782,9.551,21.333,21.333,21.333 c25.201,0,42.667-17.466,42.667-42.667v-33.83l15.085-15.085c8.331-8.331,8.331-21.839,0-30.17L383.996,225.83z"></path>{" "}
+                  <path d="M426.731,0H85.269C38.181,0,0,38.181,0,85.269v341.461C0,473.819,38.181,512,85.269,512h341.461 C473.819,512,512,473.819,512,426.731V85.269C512,38.181,473.819,0,426.731,0z M469.333,426.731 c0,23.525-19.078,42.603-42.603,42.603H85.269c-23.525,0-42.603-19.078-42.603-42.603V85.269 c0-23.525,19.078-42.603,42.603-42.603h341.461c23.525,0,42.603,19.078,42.603,42.603V426.731z"></path>{" "}
+                </g>{" "}
+              </g>{" "}
+            </g>{" "}
+          </g>
+        </svg>
+      ),
+    },
+    {
       name: "eventos",
       path: "/eventos",
       active: false,
@@ -265,15 +308,30 @@ const Header = () => {
       isActive: false,
       bg: "cover",
     },
+    {
+      name: "Argentina",
+      code: "ES-AR",
+      flag: "https://flagcdn.com/ar.svg",
+      isActive: false,
+      bg: "cover",
+    },
+    {
+      name: "Catalan",
+      code: "CA",
+      flag: "https://flagcdn.com/ad.svg",
+      isActive: false,
+      bg: "contain",
+    },
   ];
 
   const [dropdownOpen, setDropdownOpen] = useState(false);
+  const [dropdownMenuOpen, setDropdownMenuOpen] = useState(false);
   const dropdownRef = useRef(null);
   const [languages, setLanguages] = useState(listLanguages);
   const currentLanguage = localStorage.getItem("language") || "es";
 
-  const toggleDropdown = () => {
-    setDropdownOpen(!dropdownOpen);
+  const toggleDropdownMenu = () => {
+    setDropdownMenuOpen(!dropdownMenuOpen);
   };
 
   const selectLanguage = (language) => {
@@ -314,29 +372,38 @@ const Header = () => {
     i18n.changeLanguage(lng);
   };
 
-
   /* Languages End */
 
   return (
-    <header className="fixed top-0 w-full z-[999] px-12">
-      <nav className="">
-        <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto py-3 h-16 ">
+    <header className="fixed top-0 w-dvw z-[999] md:px-12 animate-fade-in-scroll ">
+      <nav className="mx-auto w-full ">
+        <div className=" w-full flex flex-wrap items-center justify-between md:justify-around mx-auto py-4 md:py-3 md:h-16  pr-4 md:pr-0 relative ">
           <Link
             to="/"
-            className="flex items-center space-x-4 active:scale-105 md:hover:scale-105 transition-all duration-150 md:hover:text-purple-500 text-3xl"
+            className="hidden md:flex items-center space-x-4 active:scale-105 md:hover:scale-105 transition-all duration-150 md:hover:text-purple-500 text-3xl"
           >
-            <img src="/icon.webp" className="h-11 " alt="Logo" />
-            <span className="text-2xl font-semibold dark:text-white">
+            <img src="/icon.webp" className="h-11" alt="Logo" />
+            <span className="text-4xl font-semibold dark:text-white">
               Midulive's
             </span>
           </Link>
-          <div>
-            <ul className="flex space-x-14 text-gray-300 font-semibold">
+
+          <button
+            onClick={toggleDropdownMenu}
+            className="md:hidden flex items-center space-x-3 active:scale-105 md:hover:scale-105 transition-all duration-150 md:hover:text-purple-500 text-2xl px-4 py-2"
+          >
+            <img src="/icon.webp" className="h-11" alt="Logo" />
+            <span className="text-4xl font-semibold dark:text-white">
+              Midulive's
+            </span>
+          </button>
+          <div className="hidden md:block">
+            <ul className="flex  text-gray-300 font-semibold items-center justify-evenly space-x-8">
               {links.map((link) => (
                 <li key={link.name}>
                   <Link
                     to={link.path}
-                    className={`flex items-center space-x-3 active:scale-105 md:hover:scale-105 transition-all duration-150 md:hover:text-purple-500 text-3xl 
+                    className={`flex items-center space-x-3 active:scale-105 md:hover:scale-105 transition-all duration-150 md:hover:text-purple-500 text-2xl 
                       ${" "} ${
                       link.active ? "text-purple-500" : "text-gray-300"
                     }`}
@@ -348,6 +415,71 @@ const Header = () => {
               ))}
             </ul>
           </div>
+
+          {dropdownMenuOpen && (
+            <div className="absolute left-0 top-0 pt-4  bg-gray-800 rounded-lg md:hidden w-dvw z-50 animate-fade-in-nav ">
+              <ul className="flex flex-col   text-gray-300 font-semibold items-start justify-evenly space-x-8">
+                <li>
+                  <button
+                    onClick={toggleDropdownMenu}
+                    className="flex items-center space-x-3 active:scale-105 md:hover:scale-105 transition-all duration-150 md:hover:text-purple-500 text-2xl px-4 py-2"
+                  >
+                    <img src="/icon.webp" className="h-11" alt="Logo" />
+                    <span className="text-4xl font-semibold dark:text-white">
+                      Midulive's
+                    </span>
+                  </button>
+                <hr className="border-gray-700 w-dvw my-3"/>
+                </li>
+                <li onClick={toggleDropdownMenu}>
+                  <Link
+                    to="/"
+                    className="flex items-center space-x-3 active:scale-105 md:hover:scale-105 transition-all duration-150 md:hover:text-purple-500 text-2xl px-4 py-2"
+                  >
+                    <svg
+                      className="w-6 h-6"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                      stroke="#ffffff"
+                    >
+                      <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                      <g
+                        id="SVGRepo_tracerCarrier"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      ></g>
+                      <g id="SVGRepo_iconCarrier">
+                        {" "}
+                        <path
+                          d="M6.49996 7C7.96131 5.53865 9.5935 4.41899 10.6975 3.74088C11.5021 3.24665 12.4978 3.24665 13.3024 3.74088C14.4064 4.41899 16.0386 5.53865 17.5 7C20.6683 10.1684 20.5 12 20.5 15C20.5 16.4098 20.3895 17.5988 20.2725 18.4632C20.1493 19.3726 19.3561 20 18.4384 20H17C15.8954 20 15 19.1046 15 18V16C15 15.2043 14.6839 14.4413 14.1213 13.8787C13.5587 13.3161 12.7956 13 12 13C11.2043 13 10.4413 13.3161 9.87864 13.8787C9.31603 14.4413 8.99996 15.2043 8.99996 16V18C8.99996 19.1046 8.10453 20 6.99996 20H5.56152C4.64378 20 3.85061 19.3726 3.72745 18.4631C3.61039 17.5988 3.49997 16.4098 3.49997 15C3.49997 12 3.33157 10.1684 6.49996 7Z"
+                          stroke="#ffffff"
+                          stroke-width="1.5"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                        ></path>{" "}
+                      </g>
+                    </svg>{" "}
+                    <span>{t("home")}</span>
+                  </Link>
+                </li>
+                {links.map((link) => (
+                  <li key={link.name} onClick={toggleDropdownMenu}>
+                    <Link
+                      to={link.path}
+                      className={`flex items-center space-x-3 active:scale-105 md:hover:scale-105 transition-all duration-150 md:hover:text-purple-500 text-2xl px-4 py-2  
+                       ${" "} ${
+                        link.active ? "text-purple-500" : "text-gray-300"
+                      }`}
+                    >
+                      {link.svg}
+                      <span>{t(link.name.toString())}</span>
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
 
           <div className="relative" ref={dropdownRef}>
             {/* Botón de idioma */}
@@ -392,6 +524,7 @@ const Header = () => {
                               style={{
                                 backgroundImage: `url(${lang.flag})`,
                                 backgroundSize: lang.bg,
+                                backgroundPosition: "center",
                               }}
                             />
                             {lang.name} ({lang.code})
