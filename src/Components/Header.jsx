@@ -320,7 +320,7 @@ const Header = () => {
       code: "CA",
       flag: "https://flagcdn.com/ad.svg",
       isActive: false,
-      bg: "contain",
+      bg: "cover",
     },
   ];
 
@@ -524,7 +524,6 @@ const Header = () => {
                               style={{
                                 backgroundImage: `url(${lang.flag})`,
                                 backgroundSize: lang.bg,
-                                backgroundPosition: "center",
                               }}
                             />
                             {lang.name} ({lang.code})
