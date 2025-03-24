@@ -30,7 +30,7 @@ const Lives = () => {
   })();
 
   const { videos, loading, error } = useVideos(playlistId);
-  const { time, selectedVideo, handleVideoSelect } = useLastVideo(
+  const { selectedVideo, handleVideoSelect } = useLastVideo(
     videos,
     currentPath
   );
@@ -65,7 +65,6 @@ const Lives = () => {
     <div className="container mx-auto px-4 pt-8 pb-24 animate-fade-in">
       <YouTubeEmbed
         videoId={videos[0].id}
-        time={time}
         playListId={playlistId}
         selectedVideo={selectedVideo}
       />
