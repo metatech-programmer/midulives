@@ -16,10 +16,10 @@ const VideoList = ({ videos, selectedVideo, onVideoSelect }) => {
       {videos.map((video) => (
         <div
           key={video.id}
-          className={`bg-gray-900 rounded-lg shadow-md overflow-hidden transform hover:scale-105 transition duration-300 animate-fade-in-show cursor-pointer ${
+          className={`bg-gray-800/50  rounded-lg shadow-md overflow-hidden transform hover:scale-105 transition duration-300 animate-fade-in-show cursor-pointer  hover:text-gray-100 ${
             selectedVideo === video.id
-              ? "ring-2 ring-purple-500 shadow-lg  shadow-purple-500 hover:text-gray-100"
-              : ""
+              ? "ring-2 ring-purple-500 shadow-lg  shadow-purple-500  text-gray-100"
+              : " text-gray-500"
           }`}
           onClick={() => onVideoSelect(video.id, (localStorage.getItem(`lastTime-id-[${video.id}]`)))}
         >
@@ -40,11 +40,11 @@ const VideoList = ({ videos, selectedVideo, onVideoSelect }) => {
               }}
             />
           </div>
-          <div className="p-4">
-            <h2 className="text-lg font-semibold text-gray-400">
+          <div className="p-4  ">
+            <h2 className="text-lg font-semibold ">
               {video.title}
             </h2>
-            <p className="text-sm text-gray-500 mt-2 flex justify-between">
+            <p className="text-sm  mt-2 flex justify-between">
               <span>
                 {t("lives.publishedAt")}: {video.publishedAt}
               </span>
