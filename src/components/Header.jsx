@@ -383,7 +383,7 @@ const Header = () => {
             className="hidden md:flex items-center space-x-4 active:scale-105 md:hover:scale-105 transition-all duration-150 md:hover:text-purple-500 text-3xl"
           >
             <img src="/icon.webp" className="h-11" alt="Logo" />
-            <span className="text-4xl font-semibold dark:text-white">
+            <span className="text-4xl font-semibold text-white">
               Midulive's
             </span>
           </Link>
@@ -393,7 +393,7 @@ const Header = () => {
             className="md:hidden flex items-center space-x-3 active:scale-105 md:hover:scale-105 transition-all duration-150 md:hover:text-purple-500 text-2xl px-4 py-2"
           >
             <img src="/icon.webp" className="h-11" alt="Logo" />
-            <span className="text-4xl font-semibold dark:text-white">
+            <span className="text-4xl font-semibold text-white">
               Midulive's
             </span>
           </button>
@@ -425,7 +425,7 @@ const Header = () => {
                     className="flex items-center space-x-3 active:scale-105 md:hover:scale-105 transition-all duration-150 md:hover:text-purple-500 text-2xl px-4 py-2"
                   >
                     <img src="/icon.webp" className="h-11" alt="Logo" />
-                    <span className="text-4xl font-semibold dark:text-white">
+                    <span className="text-4xl font-semibold text-white">
                       Midulive's
                     </span>
                   </button>
