@@ -43,10 +43,10 @@ Si estás desarrollando una aplicación de producción, recomendamos usar TypeSc
 ## Capturas de Pantalla
 
 ### Página Principal
-![Página Principal](https://midulives.vercel.app/screenshot-home.png)
+![Página Principal](https://raw.githubusercontent.com/metatech-programmer/midulives/refs/heads/main/public/screenshot-home.png)
 
 ### Página de Cursos
-![Página de Cursos](https://midulives.vercel.app/screenshot-courses.png)
+![Página de Cursos](https://raw.githubusercontent.com/metatech-programmer/midulives/refs/heads/main/public/screenshot-courses.png)
 
 ## Instalación
 
