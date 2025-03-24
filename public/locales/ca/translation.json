@@ -15,6 +15,7 @@
     "lives.title": "Mira totes les {{category}} de Midudev, no te'n perdis cap!",
     "lives.title.two": "Mira totes les classes del curs de {{category}}, no et perdis ni un sol segon!",
     "lives.publishedAt": "Publicat el",
+    "lives.lastTime": "Vist fins ara",
     "courses.title": "Tots els cursos",
     "courses.actualizados.title": "Cursos Actualitzats",
     "courses.actualizados.description": "Mantén-te al dia amb els cursos més recents i actualitzats.",
