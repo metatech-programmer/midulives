@@ -9,11 +9,19 @@ const VideoList = ({ videos, selectedVideo, onVideoSelect }) => {
         <div
           key={video.id}
           className={`bg-gray-900 rounded-lg shadow-md overflow-hidden transform hover:scale-105 transition duration-300 animate-fade-in-show cursor-pointer ${
-            selectedVideo === video.id ? "ring-2 ring-purple-500" : ""
+            selectedVideo === video.id
+              ? "ring-2 ring-purple-500 shadow-lg  shadow-purple-500"
+              : ""
           }`}
           onClick={() => onVideoSelect(video.id)}
         >
-          <div className="relative">
+          <div
+            className={`relative hover:grayscale-0 ${
+              selectedVideo === video.id
+                ? ""
+                : "grayscale-100"
+            }`}
+          >
             <img
               src={video.thumbnail}
               alt={video.title}
