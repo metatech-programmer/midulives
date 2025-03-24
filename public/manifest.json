@@ -1,0 +1,52 @@
+{
+    "name": "Midulive's",
+    "short_name": "Midulive's",
+    "description": "Aprende a programar con Midulive's",
+    "start_url": "/",
+    "display": "standalone",
+    "theme_color": "#1a202c",
+    "background_color": "#1a202c",
+    "icons": [
+        {
+            "src": "/icon.webp",
+            "sizes": "192x192",
+            "type": "image/webp"
+        },
+        {
+            "src": "/icon.webp",
+            "sizes": "512x512",
+            "type": "image/webp"
+        },
+        {
+            "src": "/icon.webp",
+            "sizes": "180x180",
+            "type": "image/png"
+        },
+        {
+            "src": "/icon.webp",
+            "sizes": "16x16",
+            "type": "image/png"
+        },
+        {
+            "src": "/icon.webp",
+            "sizes": "32x32",
+            "type": "image/png"
+        },
+        {
+            "src": "/favicon.ico",
+            "sizes": "48x48",
+            "type": "image/x-icon"
+        }
+    ],
+    "lang": "es-ES",
+    "dir": "ltr",
+    "orientation": "portrait",
+    "prefer_related_applications": false,
+    "related_applications": [
+        {
+            "platform": "play",
+            "url": "https://play.google.com/store/apps/details?id=com.midulive"
+        }
+    ]
+}
+
