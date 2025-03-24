@@ -6,6 +6,7 @@ import { useVideos } from "@hooks/useVideos";
 import { useLastVideo } from "@hooks/useLastVideo";
 import VideoList from "@components/VideoList";
 import Pagination from "@components/Pagination";
+import YouTubeEmbed from "../components/YouTubeEmbed";
 
 const VIDEOS_PER_PAGE = 12;
 
@@ -62,21 +63,12 @@ const Lives = () => {
 
   return (
     <div className="container mx-auto px-4 pt-8 pb-24 animate-fade-in">
-      <iframe
-        className="w-full h-52 md:h-[80dvh] rounded-lg shadow-lg"
-        src={`https://www.youtube.com/embed/${
-          selectedVideo || videos[0]?.id
-        }?loop=1&list=${
-          playlistId || ""
-        }&vq=hd1080&autoplay=1&controls=1&fs=1&modestbranding=1&start=${
-          time || 0
-        }`}
-        title="YouTube video player"
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-        referrerPolicy="strict-origin-when-cross-origin"
-        allowFullScreen
-      ></iframe>
-
+      <YouTubeEmbed
+        videoId={videos[0].id}
+        time={time}
+        playListId={playlistId}
+        selectedVideo={selectedVideo}
+      />
       <hr className="my-8 opacity-10" />
 
       <div className="flex justify-between items-center my-10">
