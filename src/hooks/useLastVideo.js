@@ -1,14 +1,14 @@
 import { useState, useEffect } from 'react';
 
-export function useLastVideo( videos, currentPath) {
+export function useLastVideo(videos, currentPath) {
     const [selectedVideo, setSelectedVideo] = useState(null);
-    const time = 0;
 
     // Cargar video al cambiar de ruta o cuando los videos estén disponibles
     useEffect(() => {
         if (videos.length > 0) {
             const storageKey = `lastVideo-${currentPath}`;
             const lastVideoId = localStorage.getItem(storageKey);
+            
 
             if (lastVideoId) {
                 setSelectedVideo(lastVideoId);
@@ -20,18 +20,18 @@ export function useLastVideo( videos, currentPath) {
         }
     }, [videos, currentPath]);
 
-    const handleVideoSelect = (videoId) => {
+    const handleVideoSelect = (videoId, time) => {
         if (!videoId) return;
 
         const storageKey = `lastVideo-${currentPath}`;
         localStorage.setItem(storageKey, videoId);
+        localStorage.setItem(`lastTime-id-[${videoId}]`, time);
         setSelectedVideo(videoId);
         window.scrollTo({ top: 0, behavior: "smooth" });
     };
 
     // Retorna el video seleccionado actual o null si no hay ninguno
     return {
-        time,
         selectedVideo: selectedVideo || null,
         handleVideoSelect
     };
