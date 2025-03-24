@@ -5,15 +5,13 @@ export default function YouTubeEmbed({ videoId, playListId, selectedVideo }) {
   const playerRef = useRef(null);
   const timeRef = useRef(0);
   const [loaded, setLoaded] = useState(false);
-  const intervalRef = useRef(null); // Guardar el intervalo
+  const intervalRef = useRef(null);
 
   useEffect(() => {
-    const finalVideoId = selectedVideo || videoId;
-
     const getThumbnailColors = async () => {
       const img = new Image();
       img.crossOrigin = "Anonymous";
-      img.src = `https://img.youtube.com/vi/${finalVideoId}/hqdefault.jpg`;
+      img.src = `https://img.youtube.com/vi/${selectedVideo || videoId}/hqdefault.jpg`;
 
       img.onload = () => {
         const canvas = document.createElement("canvas");
@@ -43,28 +41,41 @@ export default function YouTubeEmbed({ videoId, playListId, selectedVideo }) {
   }, [videoId, selectedVideo]);
 
   useEffect(() => {
-    const finalVideoId = selectedVideo || videoId;
-    if (!finalVideoId) return;
-
-    const savedTime = localStorage.getItem(`lastTime-id-[${finalVideoId}]`);
+    const savedTime = localStorage.getItem(`lastTime-id-[${selectedVideo}]`);
     if (savedTime) {
       timeRef.current = parseFloat(savedTime);
     }
     setLoaded(true);
-  }, [selectedVideo, videoId]);
+  }, [selectedVideo]);
 
   useEffect(() => {
     if (!loaded) return;
 
-    if (!window.YT) {
-      const script = document.createElement("script");
-      script.src = "https://www.youtube.com/iframe_api";
-      script.async = true;
-      document.body.appendChild(script);
-      script.onload = () => createPlayer();
-    } else {
-      createPlayer();
-    }
+    const initializeYouTubeAPI = () => {
+      if (!window.YT) {
+        const script = document.createElement("script");
+        script.src = "https://www.youtube.com/iframe_api";
+        script.async = true;
+        document.body.appendChild(script);
+
+        script.onload = () => {
+          if (window.YT && typeof window.YT.Player === "function") {
+            createPlayer();
+          }
+        };
+      } else {
+        createPlayer();
+      }
+    };
+
+    // Esperar a que la API de YouTube esté lista antes de crear el reproductor
+    window.onYouTubeIframeAPIReady = () => {
+      if (!playerRef.current) {
+        createPlayer();
+      }
+    };
+
+    initializeYouTubeAPI();
   }, [videoId, selectedVideo, loaded]);
 
   const createPlayer = () => {
@@ -72,13 +83,10 @@ export default function YouTubeEmbed({ videoId, playListId, selectedVideo }) {
       playerRef.current.destroy();
     }
 
-    const finalVideoId = selectedVideo || videoId;
-    if (!finalVideoId) return; // No hacer nada si no hay video
-
     playerRef.current = new YT.Player("player", {
       height: "100%",
       width: "100%",
-      videoId: finalVideoId,
+      videoId: selectedVideo || videoId,
       playerVars: {
         autoplay: 1,
         controls: 1,
@@ -109,6 +117,7 @@ export default function YouTubeEmbed({ videoId, playListId, selectedVideo }) {
             `lastTime-id-[${playerRef.current.getVideoData().video_id}]`,
             currentTime
           );
+          console.log(`Tiempo guardado: ${currentTime}`);
         }
       }, 5000);
     } else if (event.data === YT.PlayerState.ENDED || event.data === YT.PlayerState.PAUSED) {
