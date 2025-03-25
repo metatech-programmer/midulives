@@ -6,7 +6,7 @@ import { useVideos } from "@hooks/useVideos";
 import { useLastVideo } from "@hooks/useLastVideo";
 import VideoList from "@components/VideoList";
 import Pagination from "@components/Pagination";
-import YouTubeEmbed from "../components/YouTubeEmbed";
+import YouTubeEmbed from "@components/YouTubeEmbed";
 
 const VIDEOS_PER_PAGE = 12;
 
