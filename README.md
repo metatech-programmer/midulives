@@ -9,6 +9,7 @@ Este repositorio contiene una colección de los mejores cursos, charlas, en vivo
 - [Midulive's - Los mejores streams en Twitch](#midulives---los-mejores-streams-en-twitch)
   - [Tabla de Contenidos](#tabla-de-contenidos)
   - [Características](#características)
+  - [Funciones](#funciones)
   - [Tecnologías Utilizadas](#tecnologías-utilizadas)
   - [Expandiendo la configuración de ESLint](#expandiendo-la-configuración-de-eslint)
   - [Capturas de Pantalla](#capturas-de-pantalla)
@@ -26,6 +27,16 @@ Este repositorio contiene una colección de los mejores cursos, charlas, en vivo
 - **i18n**: Soporte multilenguaje con `react-i18next`.
 - **Tailwind CSS**: Estilos modernos y responsivos.
 - **YouTube API**: Integración con la API de YouTube para mostrar listas de reproducción.
+
+## Funciones
+
+- **Continúa desde donde lo dejaste**: El sitio web guarda automáticamente el tiempo en que te quedaste viendo un video y te permite continuar desde ahí, sin necesidad de buscar el momento exacto en que te conectaste.
+- **Descubre Contenido Oculto**: Accede a una extensa colección de videos educativos y de entretenimiento sobre programación.
+- **Búsqueda de Alta Velocidad**: Encuentra rápidamente el contenido que necesitas por tecnología o tema.
+- **Navegación Intuitiva**: Navega fácilmente por secciones específicas de los videos largos con marcadores de tiempo y guardado de tiempo.
+- **Acceso Universal**: Puedes elegir diferentes idiomas para explorar el contenido.
+- **Acceso sin Cuenta**: Puedes ver contenido sin crear una cuenta.
+- **Experiencia Responsiva**: Disponible en dispositivos móviles y escritorio.
 
 ## Tecnologías Utilizadas
 
