@@ -1,8 +1,8 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect } from "react";
 
 const API_KEY = import.meta.env.VITE_API_KEY_YTUBE_NEW;
-const API_URL = "https://www.googleapis.com/youtube/v3/playlistItems";
-
+const PLAYLIST_ITEMS_API = "https://www.googleapis.com/youtube/v3/playlistItems";
+const VIDEOS_API = "https://www.googleapis.com/youtube/v3/videos";
 
 export function useVideos(playlistId) {
   const [videos, setVideos] = useState([]);
@@ -13,7 +13,7 @@ export function useVideos(playlistId) {
   useEffect(() => {
     const fetchVideos = async () => {
       if (!playlistId) return;
-      
+
       setLoading(true);
       setError(null);
 
@@ -23,12 +23,10 @@ export function useVideos(playlistId) {
         return;
       }
 
-      // Add delay to ensure navigation is complete
-      await new Promise(resolve => setTimeout(resolve, 100));
-
       try {
+        // 1. Obtener los videos de la playlist
         const response = await fetch(
-          `${API_URL}?part=snippet&playlistId=${playlistId}&key=${API_KEY}&maxResults=50`
+          `${PLAYLIST_ITEMS_API}?part=snippet&playlistId=${playlistId}&key=${API_KEY}&maxResults=50`
         );
         const data = await response.json();
 
@@ -36,12 +34,28 @@ export function useVideos(playlistId) {
           throw new Error(data.error.message);
         }
 
-        const formattedVideos = data.items?.map(item => ({
-          id: item.snippet.resourceId.videoId,
-          title: item.snippet.title,
-          thumbnail: item.snippet.thumbnails.high.url,
-          publishedAt: new Date(item.snippet.publishedAt).toLocaleDateString(),
-        })) || [];
+        const videoIds = data.items.map(item => item.snippet.resourceId.videoId).join(",");
+
+        // 2. Obtener información detallada de cada video
+        const videoResponse = await fetch(
+          `${VIDEOS_API}?part=snippet&id=${videoIds}&key=${API_KEY}`
+        );
+        const videoData = await videoResponse.json();
+
+        if (videoData.error) {
+          throw new Error(videoData.error.message);
+        }
+
+        // 3. Formatear la información combinada
+        const formattedVideos = data.items.map(item => {
+          const videoInfo = videoData.items.find(v => v.id === item.snippet.resourceId.videoId);
+          return {
+            id: item.snippet.resourceId.videoId,
+            title: item.snippet.title,
+            thumbnail: item.snippet.thumbnails.high.url,
+            publishedAt: videoInfo ? new Date(videoInfo.snippet.publishedAt).toLocaleDateString() : "Fecha desconocida",
+          };
+        });
 
         setCachedVideos(prev => ({
           ...prev,
