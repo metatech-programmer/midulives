@@ -62,5 +62,13 @@
     "courses.tdd.title": "Curso de TDD",
     "courses.tdd.description": "Aprenda Desenvolvimento Guiado por Testes.",
     "courses.wordpress_headless.title": "Curso de WordPress Headless",
-    "courses.wordpress_headless.description": "Aprenda a utilizar WordPress como CMS headless."
+    "courses.wordpress_headless.description": "Aprenda a utilizar WordPress como CMS headless.",
+    "courses.clones_de_midudev.title": "Clones de Páginas Web",
+    "courses.clones_de_midudev.description": "Aprenda a clonar páginas web para entender o funcionamento da web.",
+    "courses.figma.title": "Curso de Figma",
+    "courses.figma.description": "Aprenda a usar Figma para projetar interfaces de usuário.",
+    "courses.react_native.title": "Curso de React Native",
+    "courses.react_native.description": "Aprenda a criar aplicativos nativos com React Native.",
+    "courses.react_router.title": "Curso de React Router",
+    "courses.react_router.description": "Aprenda a usar React Router para criar rotas em suas aplicações React."
 }

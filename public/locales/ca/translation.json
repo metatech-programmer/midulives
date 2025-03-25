@@ -62,5 +62,13 @@
     "courses.tdd.title": "Curs de TDD",
     "courses.tdd.description": "Aprèn Desenvolupament Guiat per Proves.",
     "courses.wordpress_headless.title": "Curs de WordPress Headless",
-    "courses.wordpress_headless.description": "Aprèn a utilitzar WordPress com a CMS headless."
+    "courses.wordpress_headless.description": "Aprèn a utilitzar WordPress com a CMS headless.",
+    "courses.clones_de_midudev.title": "Clons de Pàgines Web",
+    "courses.clones_de_midudev.description": "Aprèn a clonar pàgines web per entendre el funcionament de la web.",
+    "courses.figma.title": "Curs de Figma",
+    "courses.figma.description": "Aprèn a utilitzar Figma per dissenyar interfícies d'usuari.",
+    "courses.react_native.title": "Curs de React Native",
+    "courses.react_native.description": "Aprèn a crear aplicacions natives amb React Native.",
+    "courses.react_router.title": "Curs de React Router",
+    "courses.react_router.description": "Aprèn a utilitzar React Router per crear rutes en les teves aplicacions React."
 }
