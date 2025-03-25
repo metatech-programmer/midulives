@@ -70,5 +70,11 @@
     "courses.react_native.title": "React Native Course",
     "courses.react_native.description": "Learn to create native applications with React Native.",
     "courses.react_router.title": "React Router Course",
-    "courses.react_router.description": "Learn to use React Router to create routes in your React applications."
+    "courses.react_router.description": "Learn to use React Router to create routes in your React applications.",
+    "common": {
+        "share": "Share",
+        "shareTwitter": "Twitter",
+        "shareLinkedin": "LinkedIn",
+        "shareWhatsapp": "WhatsApp"
+    }
 }

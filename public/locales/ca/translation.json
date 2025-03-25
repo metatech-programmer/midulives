@@ -1,4 +1,10 @@
 {
+    "common": {
+        "share": "Compartir",
+        "shareTwitter": "Twitter",
+        "shareLinkedin": "LinkedIn",
+        "shareWhatsapp": "WhatsApp"
+    },
     "lives": "Vides",
     "live_coding": "Codificació en directe",
     "eventos": "Esdeveniments",
