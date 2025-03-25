@@ -1,19 +1,37 @@
 {
+  "charlas": "PLnHPgY5vHkhCE9ESV9dblUf_u4rPE89VJ",
+  "eventos": "PLnHPgY5vHkhBKWI8udqRJRYXLtoMRv9nU",
   "lives": "PLnHPgY5vHkhCjQ56qEHVvGqTRC5530U5t",
   "live_coding": "PLnHPgY5vHkhBn2KMeQcvRexJDnAHQmhfJ",
-  "eventos": "PLnHPgY5vHkhBKWI8udqRJRYXLtoMRv9nU",
   "noticias": "PLnHPgY5vHkhBAP_odp6nr4HV9tnFaKas_",
-  "charlas": "PLnHPgY5vHkhCE9ESV9dblUf_u4rPE89VJ",
   "cursos": {
+    "actualizados":"PLnHPgY5vHkhCkFx_FgYUbjUPo7Qh_79a8",
+    "angular": "PLnHPgY5vHkhCE3sNpBCW4tBh1tXhkCIMk",
+    "astro": "PLnHPgY5vHkhDoH-neajjRQzH4jQ3B7R6F",
+    "aws": "PLnHPgY5vHkhANYm-xg5_n50sDJ0OmSIGw",
+    "bootcamp": "PLV8x_i1fqBw0Kn_fBIZTa3wS_VZAqddX7",
+    "clones_de_midudev": "PLnHPgY5vHkhBw5ElJOfJ6TAAHzEc-b13C",
+    "cloudfare": "PLnHPgY5vHkhBQTfkh1sXK4Tsr6dj5Blko",
+    "css": "PLnHPgY5vHkhCmZ3W8BcjnuZAMhmS_C4R5",
+    "git": "PLnHPgY5vHkhDKw1Qs-cylLM_VTWiWZaeU",
+    "html": "PLnHPgY5vHkhBEY7lo8oyrl11KbT0ntY3n",
+    "javascript": "PLnHPgY5vHkhBU5b3j6hSbpsM3RSZCwRr7",
+    "nextjs": "PLnHPgY5vHkhDaasZpk0etYGyqVjJD-eb1",
+    "nodejs": "PLnHPgY5vHkhAvFX2HZbNI-2rHfkS_lFCL",
+    "php": "PLnHPgY5vHkhBfUUgzNd1D5MhwLB47_WB4",
     "portfolios": "PLnHPgY5vHkhDwl6uXSQoRhyGk16O7RMKD",
-    "actualizados": "PLnHPgY5vHkhCkFx_FgYUbjUPo7Qh_79a8",
-    "react": "PLUofhDIg_38q4D0xNWp7FEHOTcZhjWJ29",
-    "javascript": "PLV8x_i1fqBw0Kn_fBIZTa3wS_VZAqddX7",
+    "pruebas_tecnicas": "PLnHPgY5vHkhBBuM3iEYZJ4SSWWP2JZ3vK",
     "python": "PLnHPgY5vHkhDmnTd4rqfCRTLzNf9uXVRW",
-    "typescript": "PLUofhDIg_38pNCZe9ptj72exbFjzyePxT",
-    "astro": "PLUofhDIg_38q8ZBsl9-GPRNI1AIjkRIHZ",
-    "nodejs": "PLUofhDIg_38qm2oPOV-IRTTEKyrVBBaU7",
-    "php": "PLUofhDIg_38rCmybY4E_bmGvUHaSw7-oc&pp=0gcJCXcEOCosWNin",
-    "nextjs": "PLUofhDIg_38poFpsV-xAbWUbW1urNmY_I"
+    "react": "PLnHPgY5vHkhCEQCyKvfLACMnTs_QdoHnD",
+    "rust": "PLnHPgY5vHkhAUIz8CCoKAz5AT8mBgIQpk",
+    "sql": "PLnHPgY5vHkhA6wUoXUzpX5TypdrJ97Zou",
+    "svelte": "PLnHPgY5vHkhDL3NXP5olAsGv7qbZu8ydx",
+    "strapi": "PLnHPgY5vHkhD2I7jAlVTYDWDwYQ-RZV_S",
+    "tailwind": "PLnHPgY5vHkhBpO4yDq2KbE2chdf1Can41",
+    "TDD": "PLnHPgY5vHkhAVazZrI8fcPJxgw49rcvmO",
+    "typescript": "PLnHPgY5vHkhAZCtfSFBw8qEju_XSBJfYD",
+    "wordpress_headless": "PLnHPgY5vHkhBkw2TIDK3aGVrDaZBe9xtu"
   }
 }
+
+
