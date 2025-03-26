@@ -16,7 +16,7 @@ export function useLastVideo(videos, currentPath) {
     // Cargar video al cambiar de ruta o cuando los videos estén disponibles
     useEffect(() => {
         const storageKey = `lastVideo-${currentPath}`;
-        const lastVideoId =   localStorage.getItem(storageKey) || vidId || videos[0]?.id ;
+        const lastVideoId =  vidId || localStorage.getItem(storageKey) || videos[0]?.id ;
         const title = (vidID) => {
             const video = videos.find(video => video?.id === vidID);
             return  video?.title || name;
