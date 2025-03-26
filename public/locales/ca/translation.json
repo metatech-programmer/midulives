@@ -1,10 +1,4 @@
 {
-    "common": {
-        "share": "Compartir",
-        "shareTwitter": "Twitter",
-        "shareLinkedin": "LinkedIn",
-        "shareWhatsapp": "WhatsApp"
-    },
     "lives": "Vides",
     "live_coding": "Codificació en directe",
     "eventos": "Esdeveniments",
@@ -76,5 +70,21 @@
     "courses.react_native.title": "Curs de React Native",
     "courses.react_native.description": "Aprèn a crear aplicacions natives amb React Native.",
     "courses.react_router.title": "Curs de React Router",
-    "courses.react_router.description": "Aprèn a utilitzar React Router per crear rutes en les teves aplicacions React."
+    "courses.react_router.description": "Aprèn a utilitzar React Router per crear rutes en les teves aplicacions React.",
+    "history.title": "Històrial de reproducció",
+    "history.clear": "Esborrar històrial",
+    "history.empty": "Històrial buit",
+    "history.remove": "Eliminar",
+    "recent_videos": "Vídeos recents",
+    "view_history": "Veure històrial",
+    "common": {
+        "share": "Compartir",
+        "shareGeneric": "Compartir",
+        "shareTwitter": "Twitter",
+        "shareLinkedin": "LinkedIn",
+        "shareWhatsapp": "WhatsApp",
+        "copyUrl": "Continuar des d'un altre navegador o dispositiu amb la URL",
+        "includeTimestamp": "Iniciar en el moment actual",
+        "urlCopied" : "L'URL ha estat copiada, pots continuar des d'un altre navegador o dispositiu"
+    }
 }

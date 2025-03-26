@@ -71,11 +71,21 @@
     "courses.react_native.description": "Apprenez à créer des applications natives avec React Native.",
     "courses.react_router.title": "Cours de React Router",
     "courses.react_router.description": "Apprenez à utiliser React Router pour créer des routes dans vos applications React.",
+    "history.title" : "Historique de reproductions",
+    "history.clear" : "Effacer l'historique",
+    "history.empty" : "Historique vide",
+    "history.remove" : "Supprimer",    
+    "recent_videos": "Vídeos recientes",
+    "view_history": "Voir l'historique",
     "common": {
         "share": "Partager",
         "shareTwitter": "Twitter",
         "shareLinkedin": "LinkedIn",
-        "shareWhatsapp": "WhatsApp"
+        "shareWhatsapp": "WhatsApp",
+        "shareGeneric": "Partager",
+        "copyUrl": "Continuer depuis un autre navigateur ou appareil avec l'URL",
+        "includeTimestamp": "Commencer depuis le moment actuel",
+        "urlCopied" : "L'URL a été copiée, vous pouvez maintenant continuer depuis un autre navigateur ou appareil"
     }
 
 
