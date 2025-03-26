@@ -19,7 +19,7 @@ export function useLastVideo(videos, currentPath) {
         const lastVideoId =  vidId || localStorage.getItem(storageKey) || videos[0]?.id ;
         const title = (vidID) => {
             const video = videos.find(video => video?.id === vidID);
-            return  video?.title || name;
+            return  video?.title.replace(/%20/g, '_') || name.replace(/%20/g, '_');
         }
         const times = (vidID) => {
             return  localStorage.getItem(`lastTime-id-[${vidID}]`) || time;
