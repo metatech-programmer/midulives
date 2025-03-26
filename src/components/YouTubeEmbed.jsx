@@ -1,7 +1,7 @@
 import { useEffect, useState, useRef, use } from "react";
 import { useLocation, useParams } from "react-router-dom";
 
-export default function YouTubeEmbed({ videoId, playListId, selectedVideo }) {
+export default function YouTubeEmbed({ videoId, playListId, selectedVideo, onPlayerReady }) {
   const [bgColor, setBgColor] = useState("#000");
   const playerRef = useRef(null);
   const timeRef = useRef(0);
@@ -158,6 +158,9 @@ export default function YouTubeEmbed({ videoId, playListId, selectedVideo }) {
         onReady: (event) => {
           event.target.seekTo(timeRef.current, true);
           event.target.playVideo();
+          if (onPlayerReady) {
+            onPlayerReady(event.target);
+          }
         },
         onStateChange: handleStateChange,
       },

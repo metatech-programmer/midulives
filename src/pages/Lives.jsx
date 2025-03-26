@@ -26,10 +26,28 @@ const Lives = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [isSharePopupOpen, setIsSharePopupOpen] = useState(false);
   const [includeTime, setIncludeTime] = useState(true);
+  const [player, setPlayer] = useState(null);
 
+  const toggleSharePopup = () => {
+    setIsSharePopupOpen(!isSharePopupOpen);
+  };
 
   useEffect(() => {
+    if (isSharePopupOpen) {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+      document.body.style.overflow = 'hidden';
+      if (player) player.pauseVideo();
+    } else {
+      document.body.style.overflow = 'unset';
+      if (player) player.playVideo();
+    }
 
+    return () => {
+      document.body.style.overflow = 'unset';
+    };
+  }, [isSharePopupOpen, player]);
+
+  useEffect(() => {
     setCurrentPage(1);
     window.scrollTo(0, 0);
   }, [currentPath]);
@@ -83,15 +101,16 @@ const Lives = () => {
   }
 
   return (
-    <div className="container mx-auto px-4 pt-8 pb-24 animate-fade-in">
+    <div className="container mx-auto px-4 pt-8 pb-24 animate-fade-in" id="lives">
       <YouTubeEmbed
         videoId={videos[0].id}
         playListId={playlistId}
         selectedVideo={selectedVideo}
+        onPlayerReady={setPlayer}
       />
       <div className="flex justify-end pt-4">
         <button
-          onClick={() => setIsSharePopupOpen(true)}
+          onClick={() => toggleSharePopup()}
           className="flex items-center gap-2 px-6 py-3 text-sm font-medium text-purple-300 
             border border-purple-500/30 rounded-lg transition-all duration-300 
             hover:bg-purple-500/10 hover:scale-105 active:scale-95 hover:border-purple-500/50"
@@ -113,18 +132,18 @@ const Lives = () => {
       </div>
 
       {isSharePopupOpen && (
-        <div className="fixed inset-0 w-full h-screen flex items-center justify-center z-50 animate-fade-in rounded">
+        <div className="fixed inset-0 w-full h-[92dvh] m md:h-screen flex items-end md:items-center justify-center z-[999] animate-fade-in rounded">
           <div 
-            className="absolute inset-0 bg-black/70 backdrop-blur-sm transition-opacity rounded-2xl"
-            onClick={() => setIsSharePopupOpen(false)}
+            className="absolute  inset-0 bg-black/70 backdrop-blur-md transition-opacity md:rounded-2xl"
+            onClick={() => toggleSharePopup()}
           />
-          <div className="relative bg-gray-900 rounded-xl p-6 max-w-md w-full mx-4 shadow-2xl animate-scale-in border border-purple-500/10">
+          <div className="relative bg-gray-900 rounded-xl p-6  mx-4 shadow-2xl animate-scale-in border border-purple-500/10">
             <div className="flex justify-between items-center mb-6">
               <h3 className="text-xl font-medium bg-gradient-to-r from-purple-400 to-purple-600 bg-clip-text text-transparent">
                 {t("common.share")}
               </h3>
               <button
-                onClick={() => setIsSharePopupOpen(false)}
+                onClick={() => toggleSharePopup()}
                 className="text-gray-400 hover:text-purple-400 hover:scale-110 active:scale-95 transition-all duration-300 hover:rotate-90 "
               >
                 <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -188,7 +207,7 @@ const Lives = () => {
 
             <button
               onClick={() => {
-                navigator.clipboard.writeText(getShareUrl(includeTime));
+                navigator.clipboard.writeText(getShareUrl(true));
                 alert(t("common.urlCopied"));
               }}
               className="w-full flex items-center justify-center gap-2 p-4 text-purple-300 
