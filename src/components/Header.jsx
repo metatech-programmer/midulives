@@ -271,7 +271,7 @@ const Header = () => {
   useEffect(() => {
     const updatedLinks = links.map((link) => ({
       ...link,
-      active: link.path === location.pathname,
+      active: link.path === location.pathname.split("/").slice(0, 2).join("/"),
     }));
     setLinks(updatedLinks);
   }, [location.pathname]);
@@ -327,6 +327,7 @@ const Header = () => {
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const [dropdownMenuOpen, setDropdownMenuOpen] = useState(false);
   const dropdownRef = useRef(null);
+  const dropdownRefHistory = useRef(null);
   const [languages, setLanguages] = useState(listLanguages);
   const currentLanguage = localStorage.getItem("language") || "es";
 
@@ -362,7 +363,9 @@ const Header = () => {
       isActive:
         lang.code.toLowerCase() ===
         (currentLanguage ? currentLanguage.toLowerCase() : ""),
+
     }));
+    document.documentElement.lang = currentLanguage;
     setLanguages(updatedLanguages);
   }, [currentLanguage]);
 
@@ -374,8 +377,29 @@ const Header = () => {
 
   /* Languages End */
 
+  /* History Start */
+  const [historyOpen, setHistoryOpen] = useState(false);
+  const [recentVideos, setRecentVideos] = useState([]);
+
+  useEffect(() => {
+    const recentVideosStorage = JSON.parse(localStorage.getItem("videos_history")) || [];
+    setRecentVideos(recentVideosStorage.slice(-3).reverse());
+  }, [historyOpen]);
+
+
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (dropdownRefHistory.current && !dropdownRefHistory.current.contains(event.target)) {
+        setHistoryOpen(false);
+      }
+    };
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
+  /* History End */
+
   return (
-    <header className="fixed top-0 w-dvw z-[999] md:px-12 animate-fade-in-scroll ">
+    <header className="fixed top-0 w-dvw z-[999]   animate-fade-in-scroll ">
       <nav className="mx-auto w-full ">
         <div className=" w-full flex flex-wrap items-center justify-between md:justify-around mx-auto py-4 md:py-3 md:h-16  pr-4 md:pr-0 relative ">
           <Link
@@ -429,7 +453,7 @@ const Header = () => {
                       Midulive's
                     </span>
                   </button>
-                <hr className="border-gray-700 w-dvw my-3"/>
+                  <hr className="border-gray-700 w-dvw my-3" />
                 </li>
                 <li onClick={toggleDropdownMenu}>
                   <Link
@@ -480,60 +504,138 @@ const Header = () => {
               </ul>
             </div>
           )}
+          <div className="flex items-center space-x-2">
+            <div className="relative" ref={dropdownRefHistory}>
+              <button 
+                type="button"
+                onClick={() => setHistoryOpen(!historyOpen)}
+                className="p-2 hover:bg-gray-700 rounded-lg transition-colors"
+              >
+                <svg
+                  className="w-6 h-6"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                  <g
+                    id="SVGRepo_tracerCarrier"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  ></g>
+                  <g id="SVGRepo_iconCarrier">
+                    <path
+                      d="M3 5.67541V3C3 2.44772 2.55228 2 2 2C1.44772 2 1 2.44772 1 3V7C1 8.10457 1.89543 9 3 9H7C7.55229 9 8 8.55229 8 8C8 7.44772 7.55229 7 7 7H4.52186C4.54218 6.97505 4.56157 6.94914 4.57995 6.92229C5.621 5.40094 7.11009 4.22911 8.85191 3.57803C10.9074 2.80968 13.173 2.8196 15.2217 3.6059C17.2704 4.3922 18.9608 5.90061 19.9745 7.8469C20.9881 9.79319 21.2549 12.043 20.7247 14.1724C20.1945 16.3018 18.9039 18.1638 17.0959 19.4075C15.288 20.6513 13.0876 21.1909 10.9094 20.9247C8.73119 20.6586 6.72551 19.605 5.27028 17.9625C4.03713 16.5706 3.27139 14.8374 3.06527 13.0055C3.00352 12.4566 2.55674 12.0079 2.00446 12.0084C1.45217 12.0088 0.995668 12.4579 1.04626 13.0078C1.25994 15.3309 2.2082 17.5356 3.76666 19.2946C5.54703 21.3041 8.00084 22.5931 10.6657 22.9188C13.3306 23.2444 16.0226 22.5842 18.2345 21.0626C20.4464 19.541 22.0254 17.263 22.6741 14.6578C23.3228 12.0526 22.9963 9.30013 21.7562 6.91897C20.5161 4.53782 18.448 2.69239 15.9415 1.73041C13.4351 0.768419 10.6633 0.756291 8.14853 1.69631C6.06062 2.47676 4.26953 3.86881 3 5.67541Z"
+                      fill="#ebebeb"
+                    ></path>
+                    <path
+                      d="M12 5C11.4477 5 11 5.44771 11 6V12.4667C11 12.4667 11 12.7274 11.1267 12.9235C11.2115 13.0898 11.3437 13.2344 11.5174 13.3346L16.1372 16.0019C16.6155 16.278 17.2271 16.1141 17.5032 15.6358C17.7793 15.1575 17.6155 14.546 17.1372 14.2698L13 11.8812V6C13 5.44772 12.5523 5 12 5Z"
+                      fill="#ebebeb"
+                    ></path>
+                  </g>
+                </svg>
+              </button>
 
-          <div className="relative" ref={dropdownRef}>
-            {/* Botón de idioma */}
-            <button
-              onClick={() => setDropdownOpen(!dropdownOpen)}
-              className="flex items-center px-4 py-2 text-sm text-gray-200 rounded-lg hover:bg-gray-700 transition"
-            >
-              {languages.map(
-                (lang) =>
-                  lang.isActive && (
-                    <>
-                      <div
-                        className={`w-5 h-5 rounded-full me-2 bg-cover bg-gray-400 bg-center `}
-                        style={{
-                          backgroundImage: `url(${lang.flag})`,
-                          backgroundSize: lang.bg,
-                          backgroundPosition: "center",
-                        }}
-                      />
-                      {lang.name}
-                    </>
-                  )
+              {historyOpen && (
+                <div className="absolute right-0  mt-2 w-62 md:w-72 bg-gray-900 shadow-lg rounded-lg overflow-hidden">
+                  <div className="px-4 py-2 bg-gray-800">
+                    <h3 className="text-sm font-medium text-gray-200">{t("recent_videos")}</h3>
+                  </div>
+                  <ul className="divide-y divide-gray-700">
+                    {recentVideos.map((video) => (
+                      <li key={video.id}>
+                        <Link
+                          to={video.url+`/${video.videoId}/${video.title}`}
+                          className="flex items-center px-4 py-3 hover:bg-gray-800 transition"
+                          onClick={() => setHistoryOpen(false)}
+                        >
+                          <img
+                            src={video.thumbnail}
+                            alt={video.title}
+                            className="w-20 h-12 object-cover rounded"
+                          />
+                          <div className="ml-3">
+                            <p className="text-sm font-medium text-gray-200">{video.title}</p>
+                            <p className="text-xs text-gray-400">
+                              {new Intl.RelativeTimeFormat(currentLanguage, { style: "long" }).format(
+                                -Math.ceil(
+                                  (Date.now() - new Date(video.timestamp).getTime()) /
+                                    1000 /
+                                    60
+                                ),
+                                "minutes"
+                              )}
+                            </p>
+                          </div>
+                        </Link>
+                      </li>
+                    ))}
+                  </ul>
+                  <Link
+                    to="/history"
+                    className="block px-4 py-2 text-sm text-purple-400 bg-gray-800 hover:bg-gray-700 transition text-center"
+                    onClick={() => setHistoryOpen(false)}
+                  >
+                    {t("view_history")}
+                  </Link>
+                </div>
               )}
-            </button>
+            </div>
 
-            {/* Menú desplegable */}
-            {dropdownOpen && (
-              <div className="absolute right-0 mt-2 w-40 bg-gray-900 shadow-lg rounded-lg overflow-hidden">
-                <ul className="">
-                  {/* Opciones de idioma */}
+            <div className="relative" ref={dropdownRef}>
+              {/* Botón de idioma */}
+              <button
+                onClick={() => setDropdownOpen(!dropdownOpen)}
+                className="flex items-center px-4 py-2 text-sm text-gray-200 rounded-lg hover:bg-gray-700 transition"
+              >
+                {languages.map(
+                  (lang) =>
+                    lang.isActive && (
+                      <>
+                        <div
+                          className={`w-5 h-5 rounded-full me-2 bg-cover bg-gray-400 bg-center `}
+                          style={{
+                            backgroundImage: `url(${lang.flag})`,
+                            backgroundSize: lang.bg,
+                            backgroundPosition: "center",
+                          }}
+                        />
+                        {lang.name}
+                      </>
+                    )
+                )}
+              </button>
 
-                  {languages.map(
-                    (lang) =>
-                      !lang.isActive && (
-                        <li>
-                          <button
-                            onClick={() => selectLanguage(lang)}
-                            className="flex items-center px-4 py-2 text-sm text-gray-200 rounded-lg hover:bg-gray-950 transition w-full"
-                          >
-                            <div
-                              className={`w-5 h-5 rounded-full me-2 `}
-                              style={{
-                                backgroundImage: `url(${lang.flag})`,
-                                backgroundSize: lang.bg,
-                              }}
-                            />
-                            {lang.name} ({lang.code})
-                          </button>
-                        </li>
-                      )
-                  )}
-                </ul>
-              </div>
-            )}
+              {/* Menú desplegable */}
+              {dropdownOpen && (
+                <div className="absolute right-0 mt-2 w-40 bg-gray-900 shadow-lg rounded-lg overflow-hidden">
+                  <ul className="">
+                    {/* Opciones de idioma */}
+
+                    {languages.map(
+                      (lang) =>
+                        !lang.isActive && (
+                          <li>
+                            <button
+                              onClick={() => selectLanguage(lang)}
+                              className="flex items-center px-4 py-2 text-sm text-gray-200 rounded-lg hover:bg-gray-950 transition w-full"
+                            >
+                              <div
+                                className={`w-5 h-5 rounded-full me-2 `}
+                                style={{
+                                  backgroundImage: `url(${lang.flag})`,
+                                  backgroundSize: lang.bg,
+                                }}
+                              />
+                              {lang.name} ({lang.code})
+                            </button>
+                          </li>
+                        )
+                    )}
+                  </ul>
+                </div>
+              )}
+            </div>
           </div>
         </div>
       </nav>
