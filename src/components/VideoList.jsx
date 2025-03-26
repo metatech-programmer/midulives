@@ -1,4 +1,5 @@
 import { useTranslation } from "react-i18next";
+import { useParams } from "react-router-dom";
 
 const VideoList = ({ videos, selectedVideo, onVideoSelect }) => {
   const { t } = useTranslation();
@@ -11,21 +12,24 @@ const VideoList = ({ videos, selectedVideo, onVideoSelect }) => {
       .padStart(2, "0")}:${seconds.toString().padStart(2, "0")}`;
   };
 
+  const {vidId} = useParams();
+
   return (
     <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
       {videos.map((video) => (
+        
         <div
           key={video.id}
           className={`bg-gray-800/50  rounded-lg shadow-md overflow-hidden transform hover:scale-105 transition duration-300 animate-fade-in-show cursor-pointer  hover:text-gray-100 ${
-            selectedVideo === video.id
+            (vidId ? vidId : selectedVideo) === video.id
               ? "ring-2 ring-purple-500 shadow-lg  shadow-purple-500  text-gray-100"
               : " text-gray-500"
           }`}
-          onClick={() => onVideoSelect(video.id, (localStorage.getItem(`lastTime-id-[${video.id}]`)))}
+          onClick={() => onVideoSelect( video.id, (localStorage.getItem(`lastTime-id-[${video.id}]`)), video.title)}
         >
           <div
             className={`relative hover:grayscale-0  ${
-              selectedVideo === video.id ? "" : "grayscale-100"
+              (vidId ? vidId : selectedVideo) === video.id ? "" : "grayscale-100"
             }`}
           >
             <img
