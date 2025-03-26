@@ -4,19 +4,21 @@ import { useEffect } from "react";
 import Home from "@pages/Home";
 import Lives from "@pages/Lives";
 import Courses from "@pages/Courses";
+import History from './pages/History';
 import Header from "@components/Header";
 import BtnTop from "@components/BtnTop";
 import Footer from "@components/Footer";
 
 const routes = [
   { path: "/", element: <Home /> },
-  { path: "/lives", element: <Lives /> },
-  { path: "/live_coding", element: <Lives /> },
-  { path: "/eventos", element: <Lives /> },
-  { path: "/noticias", element: <Lives /> },
-  { path: "/charlas", element: <Lives /> },
+  { path: "/lives/:vidId?/:name?/:time?", element: <Lives /> },
+  { path: "/live_coding/:vidId?/:name?/:time?", element: <Lives /> },
+  { path: "/eventos/:vidId?/:name?/:time?", element: <Lives /> },
+  { path: "/noticias/:vidId?/:name?/:time?", element: <Lives /> },
+  { path: "/charlas/:vidId?/:name?/:time?", element: <Lives /> },
   { path: "/cursos", element: <Courses /> },
-  { path: "/cursos/:cursoId", element: <Lives /> },
+  { path: "/cursos/:cursoId?/:vidId?/:name?/:time?", element: <Lives /> },
+  { path: "/history", element: <History /> },
 ];
 
 function App() {
