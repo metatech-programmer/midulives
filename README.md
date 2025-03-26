@@ -23,10 +23,13 @@ Este repositorio contiene una colección de los mejores cursos, charlas, en vivo
 
 ## Características
 
-- **React + Vite**: Configuración mínima para trabajar con React en Vite con HMR y algunas reglas de ESLint.
-- **i18n**: Soporte multilenguaje con `react-i18next`.
-- **Tailwind CSS**: Estilos modernos y responsivos.
-- **YouTube API**: Integración con la API de YouTube para mostrar listas de reproducción.
+- **React + Vite**: Configuración optimizada con HMR, código dividido (code splitting) y pre-carga inteligente.
+- **i18n**: Soporte multilenguaje con `react-i18next` y detección automática del idioma del navegador.
+- **Tailwind CSS**: Sistema de diseño completo con temas personalizables y modo oscuro.
+- **YouTube API**: Integración completa con comentarios, marcadores y listas de reproducción.
+- **Estado Global**: Gestión eficiente con Zustand y persistencia local.
+- **PWA Ready**: Funcionalidad offline y actualizaciones automáticas.
+- **Accesibilidad**: Soporte WCAG 2.1 y navegación por teclado.
 
 ## Funciones
 
@@ -37,6 +40,9 @@ Este repositorio contiene una colección de los mejores cursos, charlas, en vivo
 - **Acceso Universal**: Puedes elegir diferentes idiomas para explorar el contenido.
 - **Acceso sin Cuenta**: Puedes ver contenido sin crear una cuenta.
 - **Experiencia Responsiva**: Disponible en dispositivos móviles y escritorio.
+- **Historial de Reproducción**: Guarda y accede a tus videos favoritos.
+- **Compartir Contenido**: Comparte videos, listas de reproducción y comentarios con amigos y familiares.
+- **Modo Oscuro**: Disponible en modo oscuro para mayor confort visual.
 
 ## Tecnologías Utilizadas
 
