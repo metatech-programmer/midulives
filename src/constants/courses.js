@@ -148,7 +148,7 @@ export const COURSES = [
     svg: React.createElement(TailwindSVG, { className: "h-full" }),
   },
   {
-    id: "tdd_course",
+    id: "tdd",
     color: "#009688",
     svg: React.createElement(TddSVG, { className: "h-full" }),
   },
