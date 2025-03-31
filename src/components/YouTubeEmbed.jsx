@@ -192,7 +192,7 @@ export default function YouTubeEmbed({ videoId, playListId, selectedVideo, onPla
   };
 
   return (
-    <div className="relative w-full h-52 md:h-[80dvh] flex justify-center items-center">
+    <div className="relative w-full h-52 sm:h-[80dvh] flex justify-center items-center">
       <div
         className="absolute w-full h-full blur-3xl opacity-80 -z-10 transition-all duration-700"
         style={{ backgroundColor: bgColor }}
@@ -200,7 +200,7 @@ export default function YouTubeEmbed({ videoId, playListId, selectedVideo, onPla
 
       <div
         id="player"
-        className="w-full h-52 md:h-[80dvh] rounded-lg shadow-lg z-50 bg-gray-950"
+        className="w-full h-52 sm:h-[80dvh] rounded-lg shadow-lg z-50 bg-gray-950"
       ></div>
     </div>
   );
