@@ -20,11 +20,11 @@ const Courses = () => {
                 </div>
                 <div></div>
               </div>
-              <div className="p-4">
-                <h2 className="text-lg font-semibold" style={{ color: course.color }}>
+              <div className="p-4 ">
+                <h2 className="text-xl font-semibold text-balance" style={{ color: course.color }}>
                   {t(`courses.${course.id}.title`)}
                 </h2>
-                <p className="text-sm text-gray-500 mt-2">
+                <p className="text-sm text-gray-500 mt-2 text-pretty">
                   {t(`courses.${course.id}.description`)}
                 </p>
               </div>

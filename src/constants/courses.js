@@ -26,6 +26,7 @@ import CssSVG from '@components/courses/css';
 import FigmaSVG from '@components/courses/figma';
 import ReactNativeSVG from '@components/courses/react-native';
 import ReactRouterSVG from '@components/courses/react-router';
+import McpSVG from '../components/courses/mcp';
 
 export const COURSES = [
   {
@@ -87,6 +88,11 @@ export const COURSES = [
     id: "javascript",
     color: "#F7DF1E",
     svg: React.createElement(JavaScriptSVG, { className: "h-full" }),
+  },
+  {
+    id: "mcp",
+    color: "#ffa168",
+    svg: React.createElement(McpSVG, { className: "h-full" }),
   },
   {
     id: "nextjs",

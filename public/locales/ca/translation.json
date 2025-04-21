@@ -71,6 +71,8 @@
     "courses.react_native.description": "Aprèn a crear aplicacions natives amb React Native.",
     "courses.react_router.title": "Curs de React Router",
     "courses.react_router.description": "Aprèn a utilitzar React Router per crear rutes en les teves aplicacions React.",
+    "courses.mcp.title": "Curs de MCP",
+    "courses.mcp.description": "Aprèn a utilitzar el Protocol de Control de Model (MCP), un protocol de comunicació de baixa latència i alta fiabilitat.",
     "history.title": "Històrial de reproducció",
     "history.clear": "Esborrar històrial",
     "history.empty": "Històrial buit",
@@ -85,6 +87,6 @@
         "shareWhatsapp": "WhatsApp",
         "copyUrl": "Continuar des d'un altre navegador o dispositiu amb la URL",
         "includeTimestamp": "Iniciar en el moment actual",
-        "urlCopied" : "L'URL ha estat copiada, pots continuar des d'un altre navegador o dispositiu"
+        "urlCopied": "L'URL ha estat copiada, pots continuar des d'un altre navegador o dispositiu"
     }
 }

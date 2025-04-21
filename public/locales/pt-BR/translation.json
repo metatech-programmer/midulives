@@ -71,6 +71,8 @@
     "courses.react_native.description": "Aprenda a criar aplicativos nativos com React Native.",
     "courses.react_router.title": "Curso de React Router",
     "courses.react_router.description": "Aprenda a usar React Router para criar rotas em suas aplicações React.",
+    "courses.mcp.title": "Curso de MCP",
+    "courses.mcp.description": "Aprenda a utilizar o Protocolo de Controle de Modelo (MCP), um protocolo de comunicação de baixa latência e alta confiabilidade.",
     "history.title": "Histórico de reproduções",
     "history.clear": "Limpar histórico",
     "history.empty": "Histórico vazio",
