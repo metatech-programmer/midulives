@@ -4,7 +4,8 @@ import { useEffect } from "react";
 import Home from "@pages/Home";
 import Lives from "@pages/Lives";
 import Courses from "@pages/Courses";
-import History from './pages/History';
+import History from "./pages/History";
+import AutoCategory from "./pages/AutoCategory";
 import Header from "@components/Header";
 import BtnTop from "@components/BtnTop";
 import Footer from "@components/Footer";
@@ -19,6 +20,7 @@ const routes = [
   { path: "/cursos", element: <Courses /> },
   { path: "/cursos/:cursoId?/:vidId?/:name?/:time?", element: <Lives /> },
   { path: "/history", element: <History /> },
+  { path: "/auto-category", element: <AutoCategory /> },
 ];
 
 function App() {
@@ -51,6 +53,5 @@ function App() {
     </div>
   );
 }
-
 
 export default App;

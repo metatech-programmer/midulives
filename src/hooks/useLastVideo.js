@@ -7,36 +7,47 @@ export function useLastVideo(videos, currentPath) {
     const [selectedVideo, setSelectedVideo] = useState(null);
     const navigate = useNavigate();
     const location = useLocation();
-    const {  vidId, name,  time }= useParams();	
+    const { vidId, name, time } = useParams();
 
-    currentPath = currentPath.split("/").splice(0, 2).join("/") === "/cursos" ? currentPath.split("/").splice(0, 3).join("/") : currentPath.split("/").splice(0, 2).join("/");
-
-
+    currentPath = currentPath.split("/").splice(0, 2).join("/") === "/cursos"
+        ? currentPath.split("/").splice(0, 3).join("/")
+        : currentPath.split("/").splice(0, 2).join("/");
 
     // Cargar video al cambiar de ruta o cuando los videos estén disponibles
     useEffect(() => {
-        const storageKey = `lastVideo-${currentPath}`;
-        const lastVideoId =  vidId || localStorage.getItem(storageKey) || videos[0]?.id ;
-        const title = (vidID) => {
-            const video = videos.find(video => video?.id === vidID);
-            return video?.title ? video.title.replace(/\s+/g, '_') : name?.replace(/\s+/g, '_');
-        }
-        const times = (vidID) => {
-            return  localStorage.getItem(`lastTime-id-[${vidID}]`) || time;
-        }
-        if (videos.length > 0) {
-            if (lastVideoId) {
-                navigate((currentPath + "/" + lastVideoId + "/" + title(lastVideoId)  + "/" + times(lastVideoId)), { replace: true });
+        if (!videos || videos.length === 0) return;
 
-            } else {
-                // Solo si no hay video guardado, usar el primero
-                navigate((currentPath + "/" + lastVideoId + "/" + title(lastVideoId) + "/" + times(lastVideoId)), { replace: true });
-                localStorage.setItem(storageKey, lastVideoId);
-            }
+        try {
+            const storageKey = `lastVideo-${currentPath}`;
+            const savedId = localStorage.getItem(storageKey);
+            const lastVideoId = vidId || savedId || videos[0]?.id;
 
+            const title = (id) => {
+                const video = videos.find(v => v?.id === id);
+                if (video?.title) return video.title.replace(/\s+/g, '_');
+                return name ? name.replace(/\s+/g, '_') : '';
+            };
 
+            const times = (id) => {
+                const timeKey = `lastTime-${id}`;
+                const stored = localStorage.getItem(timeKey);
+                if (stored && !isNaN(Number(stored))) return Number(stored);
+                if (time && !isNaN(Number(time))) return Number(time);
+                return 0;
+            };
+
+            const payload = {
+                id: lastVideoId,
+                title: title(lastVideoId),
+                time: times(lastVideoId)
+            };
+
+            setSelectedVideo(payload);
+            localStorage.setItem(storageKey, lastVideoId);
+        } catch (err) {
+            console.error('useLastVideo error:', err);
         }
-    }, [videos, currentPath, location.pathname]);
+    }, [currentPath, vidId, name, time, videos]);
 
 
 

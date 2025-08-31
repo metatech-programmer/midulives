@@ -5,12 +5,13 @@
     "cursos": "Cursos +",
     "noticias": "Noticias",
     "charlas": "Charlas",
+    "auto_category": "Auto Categorías",
     "home.title": "¡Bienvenido a Midulive's!",
     "home.subtitle": "¡El mejor contenido de tecnología en este 2025 te espera!",
     "home.description": "Descubre y revive todos los emocionantes lives desde el",
     "home.link": "Twitch de Midudev",
     "home.and": "en 2025.",
-    "home.courses"  : "Ingresa ahora mismo", 
+    "home.courses": "Ingresa ahora mismo",
     "footer.copyright": "Casi todos los derechos reservados por",
     "lives.title": "Mira todos los {{category}} de Midudev, no te pierdas ni uno solo!",
     "lives.title.two": "Mira todos las clases del curso de {{category}}, no te pierdas ni un solo segundo!",
@@ -73,21 +74,20 @@
     "courses.react_router.description": "Aprende a utilizar React Router para crear rutas en tus aplicaciones React.",
     "courses.mcp.title": "Curso de MCP",
     "courses.mcp.description": "Aprende a utilizar el Protocolo de Control de Modelo (MCP), un protocolo de comunicación de baja latencia y alta confiabilidad.",
-    "history.title" : "Historial de reproducción",
-    "history.clear" : "Limpiar historial",
-    "history.empty" : "Historial vacio",
-    "history.remove" : "Eliminar",
+    "history.title": "Historial de reproducción",
+    "history.clear": "Limpiar historial",
+    "history.empty": "Historial vacio",
+    "history.remove": "Eliminar",
     "recent_videos": "Vídeos recientes",
     "view_history": "Ver historial",
     "common": {
-        "share" : "Compartir",
+        "share": "Compartir",
         "shareTwitter": "Twitter",
         "shareLinkedin": "LinkedIn",
         "shareWhatsapp": "WhatsApp",
         "shareGeneric": "Compartir",
         "copyUrl": "Continua desde otro navegador o dispositivo con la URL",
         "includeTimestamp": "Iniciar en el momento actual",
-        "urlCopied" : "La Url ha sido copiada, ya puedes continuar desde otro navegador o dispositivo"
-        
+        "urlCopied": "La Url ha sido copiada, ya puedes continuar desde otro navegador o dispositivo"
     }
 }

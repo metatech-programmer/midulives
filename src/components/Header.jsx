@@ -264,6 +264,48 @@ const Header = () => {
         </svg>
       ),
     },
+    {
+      name: "auto_category",
+      path: "/auto-category",
+      active: false,
+      svg: (
+        <svg
+          className="w-6 h-6"
+          fill="#ffffff"
+          viewBox="0 0 24 24"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+          <g
+            id="SVGRepo_tracerCarrier"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          ></g>
+          <g id="SVGRepo_iconCarrier">
+            <path
+              d="M12 2L15.09 8.26L22 9L17 14L18.18 21L12 17.77L5.82 21L7 14L2 9L8.91 8.26L12 2Z"
+              stroke="#ffffff"
+              stroke-width="1.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              fill="none"
+            />
+            <path
+              d="M12 7V12"
+              stroke="#ffffff"
+              stroke-width="1.5"
+              stroke-linecap="round"
+            />
+            <path
+              d="M9 10H15"
+              stroke="#ffffff"
+              stroke-width="1.5"
+              stroke-linecap="round"
+            />
+          </g>
+        </svg>
+      ),
+    },
   ];
 
   const [links, setLinks] = useState(initialLinks);
@@ -363,7 +405,6 @@ const Header = () => {
       isActive:
         lang.code.toLowerCase() ===
         (currentLanguage ? currentLanguage.toLowerCase() : ""),
-
     }));
     document.documentElement.lang = currentLanguage;
     setLanguages(updatedLanguages);
@@ -382,14 +423,17 @@ const Header = () => {
   const [recentVideos, setRecentVideos] = useState([]);
 
   useEffect(() => {
-    const recentVideosStorage = JSON.parse(localStorage.getItem("videos_history")) || [];
+    const recentVideosStorage =
+      JSON.parse(localStorage.getItem("videos_history")) || [];
     setRecentVideos(recentVideosStorage.slice(-3).reverse());
   }, [historyOpen]);
 
-
   useEffect(() => {
     const handleClickOutside = (event) => {
-      if (dropdownRefHistory.current && !dropdownRefHistory.current.contains(event.target)) {
+      if (
+        dropdownRefHistory.current &&
+        !dropdownRefHistory.current.contains(event.target)
+      ) {
         setHistoryOpen(false);
       }
     };
@@ -506,7 +550,7 @@ const Header = () => {
           )}
           <div className="flex items-center space-x-2">
             <div className="relative" ref={dropdownRefHistory}>
-              <button 
+              <button
                 type="button"
                 onClick={() => setHistoryOpen(!historyOpen)}
                 className="p-2 hover:bg-gray-700 rounded-lg transition-colors"
@@ -539,13 +583,15 @@ const Header = () => {
               {historyOpen && (
                 <div className="absolute right-0  mt-2 w-62 md:w-72 bg-gray-900 shadow-lg rounded-lg overflow-hidden">
                   <div className="px-4 py-2 bg-gray-800">
-                    <h3 className="text-sm font-medium text-gray-200">{t("recent_videos")}</h3>
+                    <h3 className="text-sm font-medium text-gray-200">
+                      {t("recent_videos")}
+                    </h3>
                   </div>
                   <ul className="divide-y divide-gray-700">
                     {recentVideos.map((video) => (
                       <li key={video.id}>
                         <Link
-                          to={video.url+`/${video.videoId}/${video.title}`}
+                          to={video.url + `/${video.videoId}/${video.title}`}
                           className="flex items-center px-4 py-3 hover:bg-gray-800 transition"
                           onClick={() => setHistoryOpen(false)}
                         >
@@ -555,11 +601,16 @@ const Header = () => {
                             className="w-20 h-12 object-cover rounded"
                           />
                           <div className="ml-3">
-                            <p className="text-sm font-medium text-gray-200">{video.title}</p>
+                            <p className="text-sm font-medium text-gray-200">
+                              {video.title}
+                            </p>
                             <p className="text-xs text-gray-400">
-                              {new Intl.RelativeTimeFormat(currentLanguage, { style: "long" }).format(
+                              {new Intl.RelativeTimeFormat(currentLanguage, {
+                                style: "long",
+                              }).format(
                                 -Math.ceil(
-                                  (Date.now() - new Date(video.timestamp).getTime()) /
+                                  (Date.now() -
+                                    new Date(video.timestamp).getTime()) /
                                     1000 /
                                     60
                                 ),
