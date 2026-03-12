@@ -134,10 +134,15 @@ export default function YouTubeEmbed({
         if (existingVideo || !videoIdToUse) {
           return;
         }
-        let urls =
-          location.pathname.split("/").splice(0, 2).join("/") === "/cursos"
-            ? location.pathname.split("/").splice(0, 3).join("/")
-            : location.pathname.split("/").splice(0, 2).join("/");
+        const segs = location.pathname.split("/").filter(Boolean);
+        let urls;
+        if (segs[0] === "cursos" && segs[1] === "auto" && segs[2]) {
+          urls = `/cursos/auto/${segs[2]}`;
+        } else if (segs[0] === "cursos" && segs[1] && segs[1] !== "auto") {
+          urls = `/cursos/${segs[1]}`;
+        } else {
+          urls = `/${segs[0] || ""}`;
+        }
 
         const video = {
           videoId: videoIdToUse,

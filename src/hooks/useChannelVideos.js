@@ -37,6 +37,129 @@ function setCachePromise(promise) {
     _videoCachePromise = promise;
 }
 
+// ─── Module-level fetch (no React state) ──────────────────────────────────────
+
+async function fetchOneChannel(channelId) {
+    // 1. Obtener el playlist de uploads del canal
+    const channelResponse = await fetch(
+        `${CHANNELS_API}?part=contentDetails&id=${channelId}&key=${API_KEY}`
+    );
+    const channelData = await channelResponse.json();
+    if (channelData.error) throw new Error(`Canal error: ${channelData.error.message}`);
+
+    const uploadsPlaylistId = channelData.items[0]?.contentDetails?.relatedPlaylists?.uploads;
+    if (!uploadsPlaylistId) throw new Error("No se encontró playlist de uploads");
+
+    // 2. Paginar items del playlist
+    let allItems = [];
+    let nextPageToken = undefined;
+    do {
+        const playlistResponse = await fetch(
+            `${PLAYLIST_ITEMS_API}?part=snippet&playlistId=${uploadsPlaylistId}&key=${API_KEY}&maxResults=50${
+                nextPageToken ? `&pageToken=${nextPageToken}` : ""
+            }`
+        );
+        const playlistData = await playlistResponse.json();
+        if (playlistData.error) throw new Error(`Playlist error: ${playlistData.error.message}`);
+        allItems = allItems.concat(playlistData.items || []);
+        nextPageToken = playlistData.nextPageToken;
+    } while (nextPageToken);
+
+    const validItems = allItems.filter(
+        item => item.snippet.title !== "Deleted video" && item.snippet.title !== "Private video"
+    );
+
+    // 3. Obtener detalles (duración, embeddable)
+    const videoIds = validItems.map(item => item.snippet.resourceId.videoId);
+    const videoDetails = [];
+    for (let i = 0; i < videoIds.length; i += 50) {
+        const chunk = videoIds.slice(i, i + 50);
+        const videoResponse = await fetch(
+            `${VIDEOS_API}?part=snippet,contentDetails,status&id=${chunk.join(",")}&key=${API_KEY}`
+        );
+        const videoData = await videoResponse.json();
+        if (videoData.error) throw new Error(`Videos error: ${videoData.error.message}`);
+        videoDetails.push(...(videoData.items || []));
+    }
+
+    // 4. Formatear y categorizar
+    return validItems
+        .map(item => {
+            const videoId =
+                typeof item.snippet.resourceId.videoId === "string"
+                    ? item.snippet.resourceId.videoId
+                    : String(item.snippet.resourceId.videoId);
+            const videoDetail = videoDetails.find(v => v.id === videoId);
+            const isEmbeddable = videoDetail?.status?.embeddable !== false;
+            const privacyStatus = videoDetail?.status?.privacyStatus || "public";
+            const durationSec = videoDetail ? parseISODuration(videoDetail.contentDetails.duration) : 0;
+            const publishedAt = videoDetail?.snippet?.publishedAt || item.snippet.publishedAt;
+            return {
+                id: videoId,
+                title: item.snippet.title,
+                thumbnail:
+                    item.snippet.thumbnails?.high?.url ||
+                    item.snippet.thumbnails?.default?.url,
+                publishedAt: new Date(publishedAt).toLocaleDateString(),
+                rawPublishedAt: publishedAt,
+                duration: durationSec,
+                durationFormatted: formatDuration(durationSec),
+                category: categorizeVideo(item.snippet.title, durationSec, publishedAt),
+                channelId,
+                embeddable: isEmbeddable,
+                privacyStatus,
+            };
+        })
+        .filter(
+            video =>
+                video.embeddable &&
+                (video.privacyStatus === "public" || video.privacyStatus === "unlisted")
+        );
+}
+
+function _buildCachePromise() {
+    const existing = getCachePromise();
+    if (existing) return existing;
+
+    const promise = (async () => {
+        const [miduliveVideos, midudevVideos] = await Promise.all([
+            fetchOneChannel(CHANNEL_IDS.midulive),
+            fetchOneChannel(CHANNEL_IDS.midudev),
+        ]);
+
+        const allVideos = [...miduliveVideos, ...midudevVideos];
+        const categories = ["eventos", "lives", "cursos", "cursos_nuevos", "live_coding", "charlas", "noticias"];
+        const organized = {};
+        categories.forEach(cat => { organized[cat] = { midulive: [], midudev: [] }; });
+
+        allVideos.forEach(video => {
+            const channel = video.channelId === CHANNEL_IDS.midulive ? "midulive" : "midudev";
+            if (organized[video.category]) organized[video.category][channel].push(video);
+        });
+
+        categories.forEach(cat => {
+            ["midulive", "midudev"].forEach(ch => {
+                organized[cat][ch].sort((a, b) =>
+                    new Date(b.rawPublishedAt) - new Date(a.rawPublishedAt)
+                );
+            });
+        });
+
+        setCache(organized);
+        return organized;
+    })();
+
+    setCachePromise(promise);
+    promise.finally(() => setCachePromise(null));
+    return promise;
+}
+
+/** Call this on app startup to warm the cache before the user navigates anywhere. */
+export function prefetchChannelVideos() {
+    if (!API_KEY || getCache()) return;
+    _buildCachePromise().catch(() => { /* swallow — hook will show its own error */ });
+}
+
 function parseISODuration(iso) {
     // Convierte PT#H#M#S -> segundos
     if (!iso) return 0;

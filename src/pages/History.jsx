@@ -40,10 +40,15 @@ export default function History() {
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-        {videos.map((video) => (
+        {videos.map((video) => {
+          const savedTime = localStorage.getItem(`lastTime-id-[${video.videoId}]`);
+          const resumeTime = savedTime && !isNaN(Number(savedTime)) ? Math.floor(Number(savedTime)) : 0;
+          const safeTitle = (video.title || video.videoId).replace(/\s+/g, '_').slice(0, 80);
+          const videoUrl = `${video.url}/${video.videoId}/${safeTitle}/${resumeTime}`;
+          return (
           <div key={video.videoId} className="bg-gray-900 rounded-lg overflow-hidden shadow-lg hover:scale-105 transition-all">
 
-            <Link to={video.url+`/${video.videoId}/${video.title}`}>
+            <Link to={videoUrl}>
               <img 
                 src={video.thumbnail} 
                 alt={video.title} 
@@ -51,7 +56,7 @@ export default function History() {
               />
             </Link>
             <div className="p-4">
-              <Link to={video.url+`/${video.videoId}/${video.title}`}>
+              <Link to={videoUrl}>
                 <h2 className="text-lg font-semibold mb-2 hover:text-blue-400">
                   {video.title}
                 </h2>
@@ -69,7 +74,8 @@ export default function History() {
               </div>
             </div>
           </div>
-        ))}
+          );
+        })}
       </div>
 
       {videos.length === 0 && (

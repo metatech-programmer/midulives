@@ -1,6 +1,7 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { useEffect } from "react";
+import { prefetchChannelVideos } from "@hooks/useChannelVideos";
 import Home from "@pages/Home";
 import Lives from "@pages/Lives";
 import Courses from "@pages/Courses";
@@ -40,6 +41,11 @@ function App() {
       i18n.changeLanguage(savedLanguage);
     }
   }, [i18n]);
+
+  // Warm the video cache as soon as the app mounts so any section loads instantly
+  useEffect(() => {
+    prefetchChannelVideos();
+  }, []);
 
   return (
     <BrowserRouter>
