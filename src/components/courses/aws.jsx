@@ -3,7 +3,7 @@ const AwsSVG = ({ className }) => {
     <svg
       className={className}
       xmlns="http://www.w3.org/2000/svg"
-      xml:space="preserve"
+      xmlSpace="preserve"
       x="0"
       y="0"
       viewBox="0 0 304 182"

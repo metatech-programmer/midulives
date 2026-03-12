@@ -32,7 +32,7 @@ function getChannelIdFromMeta() {
     for (let meta of metaTags) {
         const content = meta.getAttribute('content');
         if (content && content.includes('/channel/')) {
-            const match = content.match(/\/channel\/([^\/]+)/);
+            const match = content.match(/\/channel\/([^/]+)/);
             if (match) {
                 return match[1];
             }
@@ -47,7 +47,7 @@ function getChannelIdFromCanonical() {
     if (canonical) {
         const href = canonical.getAttribute('href');
         if (href && href.includes('/channel/')) {
-            const match = href.match(/\/channel\/([^\/]+)/);
+            const match = href.match(/\/channel\/([^/]+)/);
             if (match) {
                 return match[1];
             }

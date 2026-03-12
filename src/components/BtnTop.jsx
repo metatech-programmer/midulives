@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 const BtnTop = () => {
   const [visible, setVisible] = useState(false);
@@ -10,15 +10,13 @@ const BtnTop = () => {
     });
   };
 
-  const handleScroll = () => {
-    if (window.scrollY > 200) {
-      setVisible(true);
-    } else {
-      setVisible(false);
-    }
-  };
-
-  window.addEventListener("scroll", handleScroll);
+  useEffect(() => {
+    const handleScroll = () => {
+      setVisible(window.scrollY > 200);
+    };
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   return (
     <button

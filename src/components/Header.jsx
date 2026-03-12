@@ -1,7 +1,27 @@
 import { t } from "i18next";
-import { useState, useRef, useEffect, use } from "react";
+import { useState, useRef, useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import { Link, useLocation } from "react-router-dom";
+
+const MiduliveLogoSVG = ({ className }) => (
+  <svg className={className} viewBox="0 0 44 44" xmlns="http://www.w3.org/2000/svg" aria-label="Logo" role="img">
+    <defs>
+      <linearGradient id="midu-grad" x1="0" y1="0" x2="1" y2="1">
+        <stop offset="0%" stopColor="#7c3aed" />
+        <stop offset="100%" stopColor="#4f46e5" />
+      </linearGradient>
+    </defs>
+    <rect width="44" height="44" rx="10" fill="url(#midu-grad)" />
+    <polyline
+      points="9,34 9,10 22,26 35,10 35,34"
+      fill="none"
+      stroke="white"
+      strokeWidth="5"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
+  </svg>
+);
 
 const Header = () => {
   /* Nav links start */
@@ -18,14 +38,14 @@ const Header = () => {
           viewBox="0 0 24 24"
           version="1.1"
           xmlns="http://www.w3.org/2000/svg"
-          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlnsXlink="http://www.w3.org/1999/xlink"
           fill="#000000"
         >
-          <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+          <g id="SVGRepo_bgCarrier" strokeWidth="0"></g>
           <g
             id="SVGRepo_tracerCarrier"
-            stroke-linecap="round"
-            stroke-linejoin="round"
+            strokeLinecap="round"
+            strokeLinejoin="round"
           ></g>
           <g id="SVGRepo_iconCarrier">
             <title>ic_fluent_live_24_filled</title>{" "}
@@ -33,15 +53,15 @@ const Header = () => {
             <g
               id="🔍-Product-Icons"
               stroke="none"
-              stroke-width="1"
+              strokeWidth="1"
               fill="none"
-              fill-rule="evenodd"
+              fillRule="evenodd"
             >
               {" "}
               <g
                 id="ic_fluent_live_24_filled"
                 fill="#ffffff"
-                fill-rule="nonzero"
+                fillRule="nonzero"
               >
                 {" "}
                 <path
@@ -69,16 +89,16 @@ const Header = () => {
           version="1.1"
           id="Layer_1"
           xmlns="http://www.w3.org/2000/svg"
-          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlnsXlink="http://www.w3.org/1999/xlink"
           viewBox="0 0 512 512"
-          xml:space="preserve"
+          xmlSpace="preserve"
           stroke="#ffffff"
         >
-          <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+          <g id="SVGRepo_bgCarrier" strokeWidth="0"></g>
           <g
             id="SVGRepo_tracerCarrier"
-            stroke-linecap="round"
-            stroke-linejoin="round"
+            strokeLinecap="round"
+            strokeLinejoin="round"
           ></g>
           <g id="SVGRepo_iconCarrier">
             {" "}
@@ -144,17 +164,17 @@ const Header = () => {
           xmlns="http://www.w3.org/2000/svg"
           stroke="#ffffff"
         >
-          <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+          <g id="SVGRepo_bgCarrier" strokeWidth="0"></g>
           <g
             id="SVGRepo_tracerCarrier"
-            stroke-linecap="round"
-            stroke-linejoin="round"
+            strokeLinecap="round"
+            strokeLinejoin="round"
           ></g>
           <g id="SVGRepo_iconCarrier">
             {" "}
             <path
               d="M1395.06 960c165.12 0 299.4 134.16 299.88 299.04 0 .3.083.6.111.83l.009.13c0 165.36-134.64 300-300 300s-300-134.64-300-300 134.64-300 300-300Zm-975 0c165.36 0 300 134.64 300 300s-134.64 300-300 300c-165.48 0-300-134.64-300-300s134.52-300 300-300Zm1394.88 299.04c-.36-124.8-96.96-781.8-100.92-808.44-14.76-120-117.12-210.6-238.2-210.6h-155.76v120h155.76c60.48 0 111.72 45.24 119.28 106.68 15 101.88 42.84 297.24 65.4 470.64-72.6-59.88-164.28-97.32-265.44-97.32-210.96 0-384.48 157.08-414 360H833.94c-29.4-202.92-202.92-360-413.88-360-101.28 0-192.96 37.44-265.56 97.32 22.56-173.52 50.52-369.48 65.52-472.08 7.44-60 58.68-105.24 119.16-105.24h140.88V240H339.18c-121.08 0-223.44 90.6-237.96 209.28C97.02 477.24.06 1137 .06 1260c0 231.6 188.4 420 420 420 210.96 0 384.48-157.08 413.88-360h147.12c29.52 202.92 203.04 360 414 360 231.6 0 420-188.4 420-420 0-.24-.12-.6-.12-.96"
-              fill-rule="evenodd"
+              fillRule="evenodd"
             ></path>{" "}
           </g>
         </svg>
@@ -172,43 +192,43 @@ const Header = () => {
           xmlns="http://www.w3.org/2000/svg"
           stroke="#ffffff"
         >
-          <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+          <g id="SVGRepo_bgCarrier" strokeWidth="0"></g>
           <g
             id="SVGRepo_tracerCarrier"
-            stroke-linecap="round"
-            stroke-linejoin="round"
+            strokeLinecap="round"
+            strokeLinejoin="round"
           ></g>
           <g id="SVGRepo_iconCarrier">
             {" "}
-            <g clip-path="url(#clip0_429_11031)">
+            <g clipPath="url(#clip0_429_11031)">
               {" "}
               <path
                 d="M3 4V18C3 19.1046 3.89543 20 5 20H17H19C20.1046 20 21 19.1046 21 18V8H17"
                 stroke="#ffffff"
-                stroke-width="1.5"
-                stroke-linecap="round"
-                stroke-linejoin="round"
+                strokeWidth="1.5"
+                strokeLinecap="round"
+                strokeLinejoin="round"
               ></path>{" "}
               <path
                 d="M3 4H17V18C17 19.1046 17.8954 20 19 20V20"
                 stroke="#ffffff"
-                stroke-width="1.5"
-                stroke-linecap="round"
-                stroke-linejoin="round"
+                strokeWidth="1.5"
+                strokeLinecap="round"
+                strokeLinejoin="round"
               ></path>{" "}
               <path
                 d="M13 8L7 8"
                 stroke="#ffffff"
-                stroke-width="1.5"
-                stroke-linecap="round"
-                stroke-linejoin="round"
+                strokeWidth="1.5"
+                strokeLinecap="round"
+                strokeLinejoin="round"
               ></path>{" "}
               <path
                 d="M13 12L9 12"
                 stroke="#ffffff"
-                stroke-width="1.5"
-                stroke-linecap="round"
-                stroke-linejoin="round"
+                strokeWidth="1.5"
+                strokeLinecap="round"
+                strokeLinejoin="round"
               ></path>{" "}
             </g>{" "}
             <defs>
@@ -235,15 +255,15 @@ const Header = () => {
           version="1.1"
           id="Layer_1"
           xmlns="http://www.w3.org/2000/svg"
-          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlnsXlink="http://www.w3.org/1999/xlink"
           viewBox="0 0 259.465 259.465"
-          xml:space="preserve"
+          xmlSpace="preserve"
         >
-          <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+          <g id="SVGRepo_bgCarrier" strokeWidth="0"></g>
           <g
             id="SVGRepo_tracerCarrier"
-            stroke-linecap="round"
-            stroke-linejoin="round"
+            strokeLinecap="round"
+            strokeLinejoin="round"
           ></g>
           <g id="SVGRepo_iconCarrier">
             {" "}
@@ -260,48 +280,6 @@ const Header = () => {
                 </g>{" "}
               </g>{" "}
             </g>{" "}
-          </g>
-        </svg>
-      ),
-    },
-    {
-      name: "auto_category",
-      path: "/auto-category",
-      active: false,
-      svg: (
-        <svg
-          className="w-6 h-6"
-          fill="#ffffff"
-          viewBox="0 0 24 24"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
-          <g
-            id="SVGRepo_tracerCarrier"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-          ></g>
-          <g id="SVGRepo_iconCarrier">
-            <path
-              d="M12 2L15.09 8.26L22 9L17 14L18.18 21L12 17.77L5.82 21L7 14L2 9L8.91 8.26L12 2Z"
-              stroke="#ffffff"
-              stroke-width="1.5"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              fill="none"
-            />
-            <path
-              d="M12 7V12"
-              stroke="#ffffff"
-              stroke-width="1.5"
-              stroke-linecap="round"
-            />
-            <path
-              d="M9 10H15"
-              stroke="#ffffff"
-              stroke-width="1.5"
-              stroke-linecap="round"
-            />
           </g>
         </svg>
       ),
@@ -450,7 +428,7 @@ const Header = () => {
             to="/"
             className="hidden md:flex items-center space-x-4 active:scale-105 md:hover:scale-105 transition-all duration-150 md:hover:text-purple-500 text-3xl"
           >
-            <img src="/icon.webp" className="h-11" alt="Logo" />
+            <img src={"/icon.png"} alt="Midulive Logo" className="h-11 w-auto" />
             <span className="text-4xl font-semibold text-white">
               Midulive's
             </span>
@@ -460,7 +438,7 @@ const Header = () => {
             onClick={toggleDropdownMenu}
             className="md:hidden flex items-center space-x-3 active:scale-105 md:hover:scale-105 transition-all duration-150 md:hover:text-purple-500 text-2xl px-4 py-2"
           >
-            <img src="/icon.webp" className="h-11" alt="Logo" />
+            <MiduliveLogoSVG className="h-11 w-auto" />
             <span className="text-4xl font-semibold text-white">
               Midulive's
             </span>
@@ -492,7 +470,7 @@ const Header = () => {
                     onClick={toggleDropdownMenu}
                     className="flex items-center space-x-3 active:scale-105 md:hover:scale-105 transition-all duration-150 md:hover:text-purple-500 text-2xl px-4 py-2"
                   >
-                    <img src="/icon.webp" className="h-11" alt="Logo" />
+                    <MiduliveLogoSVG className="h-11 w-auto" />
                     <span className="text-4xl font-semibold text-white">
                       Midulive's
                     </span>
@@ -511,20 +489,20 @@ const Header = () => {
                       xmlns="http://www.w3.org/2000/svg"
                       stroke="#ffffff"
                     >
-                      <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                      <g id="SVGRepo_bgCarrier" strokeWidth="0"></g>
                       <g
                         id="SVGRepo_tracerCarrier"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
                       ></g>
                       <g id="SVGRepo_iconCarrier">
                         {" "}
                         <path
                           d="M6.49996 7C7.96131 5.53865 9.5935 4.41899 10.6975 3.74088C11.5021 3.24665 12.4978 3.24665 13.3024 3.74088C14.4064 4.41899 16.0386 5.53865 17.5 7C20.6683 10.1684 20.5 12 20.5 15C20.5 16.4098 20.3895 17.5988 20.2725 18.4632C20.1493 19.3726 19.3561 20 18.4384 20H17C15.8954 20 15 19.1046 15 18V16C15 15.2043 14.6839 14.4413 14.1213 13.8787C13.5587 13.3161 12.7956 13 12 13C11.2043 13 10.4413 13.3161 9.87864 13.8787C9.31603 14.4413 8.99996 15.2043 8.99996 16V18C8.99996 19.1046 8.10453 20 6.99996 20H5.56152C4.64378 20 3.85061 19.3726 3.72745 18.4631C3.61039 17.5988 3.49997 16.4098 3.49997 15C3.49997 12 3.33157 10.1684 6.49996 7Z"
                           stroke="#ffffff"
-                          stroke-width="1.5"
-                          stroke-linecap="round"
-                          stroke-linejoin="round"
+                          strokeWidth="1.5"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
                         ></path>{" "}
                       </g>
                     </svg>{" "}
@@ -561,11 +539,11 @@ const Header = () => {
                   fill="none"
                   xmlns="http://www.w3.org/2000/svg"
                 >
-                  <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                  <g id="SVGRepo_bgCarrier" strokeWidth="0"></g>
                   <g
                     id="SVGRepo_tracerCarrier"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
                   ></g>
                   <g id="SVGRepo_iconCarrier">
                     <path
@@ -642,7 +620,7 @@ const Header = () => {
                 {languages.map(
                   (lang) =>
                     lang.isActive && (
-                      <>
+                      <span key={lang.code} className="flex items-center">
                         <div
                           className={`w-5 h-5 rounded-full me-2 bg-cover bg-gray-400 bg-center `}
                           style={{
@@ -652,7 +630,7 @@ const Header = () => {
                           }}
                         />
                         {lang.name}
-                      </>
+                      </span>
                     )
                 )}
               </button>
@@ -666,7 +644,7 @@ const Header = () => {
                     {languages.map(
                       (lang) =>
                         !lang.isActive && (
-                          <li>
+                          <li key={lang.code}>
                             <button
                               onClick={() => selectLanguage(lang)}
                               className="flex items-center px-4 py-2 text-sm text-gray-200 rounded-lg hover:bg-gray-950 transition w-full"

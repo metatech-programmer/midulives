@@ -4,6 +4,11 @@ import { useEffect } from "react";
 import Home from "@pages/Home";
 import Lives from "@pages/Lives";
 import Courses from "@pages/Courses";
+import CoursePage from "@pages/CoursePage";
+import Eventos from "@pages/Eventos";
+import Noticias from "@pages/Noticias";
+import Charlas from "@pages/Charlas";
+import LiveCoding from "@pages/LiveCoding";
 import History from "./pages/History";
 import AutoCategory from "./pages/AutoCategory";
 import Header from "@components/Header";
@@ -13,33 +18,36 @@ import Footer from "@components/Footer";
 const routes = [
   { path: "/", element: <Home /> },
   { path: "/lives/:vidId?/:name?/:time?", element: <Lives /> },
-  { path: "/live_coding/:vidId?/:name?/:time?", element: <Lives /> },
-  { path: "/eventos/:vidId?/:name?/:time?", element: <Lives /> },
-  { path: "/noticias/:vidId?/:name?/:time?", element: <Lives /> },
-  { path: "/charlas/:vidId?/:name?/:time?", element: <Lives /> },
+  { path: "/live_coding/:vidId?/:name?/:time?", element: <LiveCoding /> },
+  { path: "/eventos/:vidId?/:name?/:time?", element: <Eventos /> },
+  { path: "/noticias/:vidId?/:name?/:time?", element: <Noticias /> },
+  { path: "/charlas/:vidId?/:name?/:time?", element: <Charlas /> },
   { path: "/cursos", element: <Courses /> },
-  { path: "/cursos/:cursoId?/:vidId?/:name?/:time?", element: <Lives /> },
+  { path: "/cursos/auto/:topicId/:vidId/:name/:time", element: <CoursePage /> },
+  { path: "/cursos/auto/:topicId", element: <CoursePage /> },
+  { path: "/cursos/:cursoId/:vidId/:name/:time", element: <CoursePage /> },
+  { path: "/cursos/:cursoId", element: <CoursePage /> },
   { path: "/history", element: <History /> },
   { path: "/auto-category", element: <AutoCategory /> },
 ];
 
 function App() {
-  const currentLanguage = localStorage.getItem("language") || "es";
-
   const { i18n } = useTranslation();
+
   useEffect(() => {
-    if (currentLanguage) {
-      i18n.changeLanguage(currentLanguage);
+    const savedLanguage = localStorage.getItem("language");
+    if (savedLanguage) {
+      i18n.changeLanguage(savedLanguage);
     }
-  }, [currentLanguage]);
+  }, [i18n]);
 
   return (
-    <div
-      className="bg-gradient-to-b from-gray-800 to-gray-950 min-h-screen flex flex-col"
-      id="top"
-    >
-      <BtnTop />
-      <BrowserRouter>
+    <BrowserRouter>
+      <div
+        className="bg-gradient-to-b from-gray-800 to-gray-950 min-h-screen flex flex-col"
+        id="top"
+      >
+        <BtnTop />
         <Header />
         <main className="flex-grow pt-16">
           <Routes>
@@ -49,9 +57,10 @@ function App() {
           </Routes>
         </main>
         <Footer />
-      </BrowserRouter>
-    </div>
+      </div>
+    </BrowserRouter>
   );
 }
 
 export default App;
+

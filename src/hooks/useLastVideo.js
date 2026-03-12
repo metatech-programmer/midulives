@@ -1,17 +1,23 @@
 import { useState, useEffect } from 'react';
-import { useLocation, useNavigate, useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 
-
+// YouTube video IDs are 11 chars: letters, digits, hyphens, underscores
+const isValidVideoId = (id) => typeof id === 'string' && /^[a-zA-Z0-9_-]{8,12}$/.test(id);
+const getLastTimeKey = (id) => `lastTime-id-[${id}]`;
 
 export function useLastVideo(videos, currentPath) {
     const [selectedVideo, setSelectedVideo] = useState(null);
     const navigate = useNavigate();
-    const location = useLocation();
     const { vidId, name, time } = useParams();
 
-    currentPath = currentPath.split("/").splice(0, 2).join("/") === "/cursos"
-        ? currentPath.split("/").splice(0, 3).join("/")
-        : currentPath.split("/").splice(0, 2).join("/");
+    const segments = currentPath.split("/");
+    if (segments[1] === "cursos" && segments[2] === "auto") {
+        currentPath = segments.slice(0, 4).join("/");
+    } else if (segments[1] === "cursos") {
+        currentPath = segments.slice(0, 3).join("/");
+    } else {
+        currentPath = segments.slice(0, 2).join("/");
+    }
 
     // Cargar video al cambiar de ruta o cuando los videos estén disponibles
     useEffect(() => {
@@ -19,7 +25,10 @@ export function useLastVideo(videos, currentPath) {
 
         try {
             const storageKey = `lastVideo-${currentPath}`;
-            const savedId = localStorage.getItem(storageKey);
+            const savedRaw = localStorage.getItem(storageKey);
+            // Reject corrupt values like "[object Object]" that old code may have stored
+            const savedId = isValidVideoId(savedRaw) ? savedRaw : null;
+            if (savedRaw && !savedId) localStorage.removeItem(storageKey);
             const lastVideoId = vidId || savedId || videos[0]?.id;
 
             const title = (id) => {
@@ -29,7 +38,7 @@ export function useLastVideo(videos, currentPath) {
             };
 
             const times = (id) => {
-                const timeKey = `lastTime-${id}`;
+                const timeKey = getLastTimeKey(id);
                 const stored = localStorage.getItem(timeKey);
                 if (stored && !isNaN(Number(stored))) return Number(stored);
                 if (time && !isNaN(Number(time))) return Number(time);
@@ -42,7 +51,12 @@ export function useLastVideo(videos, currentPath) {
                 time: times(lastVideoId)
             };
 
-            setSelectedVideo(payload);
+            setSelectedVideo(prev => {
+                if (prev && prev.id === payload.id && prev.time === payload.time && prev.title === payload.title) {
+                    return prev;
+                }
+                return payload;
+            });
             localStorage.setItem(storageKey, lastVideoId);
         } catch (err) {
             console.error('useLastVideo error:', err);
@@ -56,7 +70,7 @@ export function useLastVideo(videos, currentPath) {
         setSelectedVideo(videoId);
         const storageKey = `lastVideo-${currentPath}`;
         localStorage.setItem(storageKey, videoId);
-        localStorage.setItem(`lastTime-id-[${videoId}]`, time);
+        localStorage.setItem(getLastTimeKey(videoId), Number(time) || 0);
         window.scrollTo({ top: 0, behavior: "smooth" });
         navigate((currentPath + "/" + videoId + "/" + name + "/" + time), { replace: true });
     };

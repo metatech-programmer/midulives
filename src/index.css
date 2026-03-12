@@ -1,31 +1,49 @@
-@import url('https://fonts.googleapis.com/css2?family=Dongle&family=Silkscreen:wght@400;700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Dongle&family=Silkscreen:wght@400;700&display=swap");
 @import "tailwindcss";
 
-@theme {
-  --font-dongle: 'dongle', sans-serif;
-  --font-silkscreen: 'silkscreen', sans-serif;
+:root {
+  --font-dongle: "Dongle", sans-serif;
+  --font-silkscreen: "Silkscreen", sans-serif;
+
+  --animate-fade-in: fadeIn 0.2s ease-out;
+  --animate-scale-in: scaleIn 0.2s ease-out;
+}
+
+@layer utilities {
+  .font-silkscreen {
+    font-family: var(--font-silkscreen);
+  }
+  .font-dongle {
+    font-family: var(--font-dongle);
+  }
 }
 
 @layer base {
   html {
-    @apply font-dongle text-white bg-black tracking-wider;
+    font-family: var(--font-dongle);
+    color: #ffffff;
+    background: #000000;
+    letter-spacing: 0.05em;
   }
 }
 
-
-
-@theme {
-  --animate-fade-in: fade-in 0.2s ease-out;
-  --animate-scale-in: scale-in 0.2s ease-out;
-
-  @keyframes fade-in {
-    0% { opacity: 0; }
-    100% { opacity: 1; }
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
   }
+  100% {
+    opacity: 1;
+  }
+}
 
-  @keyframes scale-in {
-    0% { transform: scale(0.95); opacity: 0; }
-    100% { transform: scale(1); opacity: 1; }
+@keyframes scaleIn {
+  0% {
+    transform: scale(0.95);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
   }
 }
 /* -------------------------------------------------------------------------- */
@@ -35,20 +53,22 @@
 }
 
 .animate-fade-in-show {
-  view-timeline-name: --reveal;
-
   animation-name: fadeIn;
   animation-fill-mode: both;
-
-  animation-timeline: --reveal;
-  animation-range: entry 25% cover 50%;
 }
 
+@supports (animation-timeline: scroll()) {
+  .animate-fade-in-show {
+    view-timeline-name: --reveal;
+    animation-timeline: --reveal;
+    animation-range: entry 25% cover 50%;
+  }
 
-.animate-fade-in-scroll {
-  animation: fadeInScroll linear both;
-  animation-timeline: scroll();
-  animation-range: 0 150px;
+  .animate-fade-in-scroll {
+    animation: fadeInScroll linear both;
+    animation-timeline: scroll();
+    animation-range: 0 150px;
+  }
 }
 
 .animate-fade-in-nav {
@@ -59,12 +79,11 @@
   from {
     background-color: transparent;
     top: -5px;
-
   }
 
   to {
     top: -5px;
-   box-shadow: 0 0 10px 10px #111a28b5;
+    box-shadow: 0 0 10px 10px #111a28b5;
     background: #111a28b5;
     backdrop-filter: blur(160px);
   }
@@ -72,19 +91,15 @@
 
 @keyframes fadeIn {
   from {
-    transform: translateY(20px);
-    scale: 80%;
+    transform: translateY(20px) scale(0.8);
     opacity: 0;
   }
 
   to {
-    transform: translateY(0);
-    scale: 100%;
+    transform: translateY(0) scale(1);
     opacity: 1;
   }
 }
-
-
 
 @keyframes fadeInNav {
   from {
@@ -100,7 +115,7 @@
 
 ::-webkit-scrollbar {
   width: 5px;
-  background-color: #111A28;
+  background-color: #111a28;
 }
 
 ::-webkit-scrollbar-track {

@@ -20,7 +20,14 @@ export default defineConfig({
     }
   },
   plugins: [react(), tailwindcss()],
-
+  server: {
+    port: 3095,
+    hmr: {
+      protocol: 'ws',
+      host: 'localhost',
+      port: 3095,
+    },
+  },
 })
 
 

@@ -6,13 +6,8 @@ const AngularSVG = ({ className }) => {
       fill="none"
       viewBox="0 0 242 256"
     >
-      <g clip-path="url(#a)">
-        <mask
-          id="b"
-          x="0"
-          y="0"
-          maskUnits="userSpaceOnUse"
-        >
+      <g clipPath="url(#a)">
+        <mask id="b" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h242v256H0V0Z" />
         </mask>
         <g mask="url(#b)">
@@ -35,12 +30,12 @@ const AngularSVG = ({ className }) => {
           y2="140.7"
           gradientUnits="userSpaceOnUse"
         >
-          <stop stop-color="#E40035" />
-          <stop offset=".2" stop-color="#F60A48" />
-          <stop offset=".4" stop-color="#F20755" />
-          <stop offset=".5" stop-color="#DC087D" />
-          <stop offset=".7" stop-color="#9717E7" />
-          <stop offset="1" stop-color="#6C00F5" />
+          <stop stopColor="#E40035" />
+          <stop offset=".2" stopColor="#F60A48" />
+          <stop offset=".4" stopColor="#F20755" />
+          <stop offset=".5" stopColor="#DC087D" />
+          <stop offset=".7" stopColor="#9717E7" />
+          <stop offset="1" stopColor="#6C00F5" />
         </linearGradient>{" "}
         <linearGradient
           id="d"
@@ -51,8 +46,8 @@ const AngularSVG = ({ className }) => {
           gradientUnits="userSpaceOnUse"
         >
           {" "}
-          <stop stop-color="#FF31D9" />
-          <stop offset="1" stop-color="#FF5BE1" stop-opacity="0" />
+          <stop stopColor="#FF31D9" />
+          <stop offset="1" stopColor="#FF5BE1" stopOpacity="0" />
         </linearGradient>
         <clipPath id="a">
           <path fill="#fff" d="M0 0h242v256H0z" />

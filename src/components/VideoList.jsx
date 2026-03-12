@@ -1,8 +1,16 @@
 import { useTranslation } from "react-i18next";
 import { useParams } from "react-router-dom";
 
+const THUMBNAIL_FALLBACK =
+  "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1280 720'%3E%3Crect width='1280' height='720' fill='%23111111'/%3E%3Ccircle cx='640' cy='360' r='92' fill='%23262626'/%3E%3Cpath d='M612 305l108 55-108 55z' fill='%23f5f5f5'/%3E%3C/svg%3E";
+
 const VideoList = ({ videos, selectedVideo, onVideoSelect }) => {
   const { t } = useTranslation();
+
+  // selectedVideo can be a string ID or an object { id, title, time }
+  const resolvedSelectedId = selectedVideo && typeof selectedVideo === 'object'
+    ? (selectedVideo.id || selectedVideo.videoId || null)
+    : selectedVideo || null;
   const timeFormat = (time) => {
     const hours = isNaN(Math.floor(time / 3600)) ? 0 : Math.floor(time / 3600);
     const minutes = isNaN(Math.floor((time % 3600) / 60)) ? 0 : Math.floor((time % 3600) / 60);
@@ -21,7 +29,7 @@ const VideoList = ({ videos, selectedVideo, onVideoSelect }) => {
         <div
           key={video.id}
           className={`bg-gray-800/50  rounded-lg shadow-md overflow-hidden transform hover:scale-105 transition duration-300 animate-fade-in-show cursor-pointer  hover:text-gray-100 ${
-            (vidId ? vidId : selectedVideo) === video.id
+            (vidId ? vidId : resolvedSelectedId) === video.id
               ? "ring-2 ring-purple-500 shadow-lg  shadow-purple-500  text-gray-100"
               : " text-gray-500"
           }`}
@@ -29,7 +37,7 @@ const VideoList = ({ videos, selectedVideo, onVideoSelect }) => {
         >
           <div
             className={`relative hover:grayscale-0  ${
-              (vidId ? vidId : selectedVideo) === video.id ? "" : "grayscale-100"
+              (vidId ? vidId : resolvedSelectedId) === video.id ? "" : "grayscale"
             }`}
           >
             <img
@@ -40,7 +48,7 @@ const VideoList = ({ videos, selectedVideo, onVideoSelect }) => {
               referrerPolicy="no-referrer"
               crossOrigin="anonymous"
               onError={(e) => {
-                e.target.src = "https://via.placeholder.com/150";
+                e.currentTarget.src = THUMBNAIL_FALLBACK;
               }}
             />
           </div>

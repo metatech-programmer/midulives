@@ -5,7 +5,7 @@ const videos = {
             "title": "Live 1",
             "url": "https://www.youtube.com/embed/VIDEO_ID_1",
             "speaker": "Midudev (Miguel Ángel Durán)",
-            "Image": "https://via.placeholder.com/150"
+            "Image": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1280 720'%3E%3Crect width='1280' height='720' fill='%23111111'/%3E%3C/svg%3E"
         }
     ],
     "news": [
@@ -15,7 +15,7 @@ const videos = {
             "url": "https://www.youtube.com/embed/VIDEO_ID_1",
             "speaker": "Midudev (Miguel Ángel Durán)",
             "description": "Description 1",
-            "Image": "https://via.placeholder.com/150"
+            "Image": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1280 720'%3E%3Crect width='1280' height='720' fill='%23111111'/%3E%3C/svg%3E"
         },
     ],
     "talks": [
@@ -25,7 +25,7 @@ const videos = {
             "url": "https://www.youtube.com/embed/VIDEO_ID_1",
             "speaker": "Midudev (Miguel Ángel Durán)",
             "description": "Description 1",
-            "Image": "https://via.placeholder.com/150"
+            "Image": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1280 720'%3E%3Crect width='1280' height='720' fill='%23111111'/%3E%3C/svg%3E"
         }
     ],
     "courses": [
@@ -35,7 +35,7 @@ const videos = {
             "url": "https://www.youtube.com/embed/VIDEO_ID_1",
             "speaker": "Midudev (Miguel Ángel Durán)",
             "description": "Description 1",
-            "Image": "https://via.placeholder.com/150"
+            "Image": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1280 720'%3E%3Crect width='1280' height='720' fill='%23111111'/%3E%3C/svg%3E"
         }
     ],
     "events": [
@@ -45,7 +45,7 @@ const videos = {
             "url": "https://www.youtube.com/embed/VIDEO_ID_1",
             "speaker": "Midudev (Miguel Ángel Durán)",
             "description": "Description 1",
-            "Image": "https://via.placeholder.com/150"
+            "Image": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1280 720'%3E%3Crect width='1280' height='720' fill='%23111111'/%3E%3C/svg%3E"
         }
     ],
 };
