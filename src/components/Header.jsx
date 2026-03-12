@@ -438,7 +438,7 @@ const Header = () => {
             onClick={toggleDropdownMenu}
             className="md:hidden flex items-center space-x-3 active:scale-105 md:hover:scale-105 transition-all duration-150 md:hover:text-purple-500 text-2xl px-4 py-2"
           >
-            <MiduliveLogoSVG className="h-11 w-auto" />
+            <img src={"/icon.png"} alt="Midulive Logo" className="h-11 w-auto" />
             <span className="text-4xl font-semibold text-white">
               Midulive's
             </span>
@@ -470,7 +470,7 @@ const Header = () => {
                     onClick={toggleDropdownMenu}
                     className="flex items-center space-x-3 active:scale-105 md:hover:scale-105 transition-all duration-150 md:hover:text-purple-500 text-2xl px-4 py-2"
                   >
-                    <MiduliveLogoSVG className="h-11 w-auto" />
+                    <img src={"/icon.png"} alt="Midulive Logo" className="h-11 w-auto" />
                     <span className="text-4xl font-semibold text-white">
                       Midulive's
                     </span>
